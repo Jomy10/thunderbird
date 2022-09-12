@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'PressStart2P';
+    src: url('/src/assets/PressStart2P-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: "PressStart2P";
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+:root {
+  font-family: "PressStart2P";
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

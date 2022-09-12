@@ -1,0 +1,14 @@
+.App {
+  max-height: 90vh;
+  min-height: 90vh;
+  /* The background color that NES css uses */
+  background-color: #212529;
+  /* Space left for content: 94 vw */
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
+.display {
+  width: calc(min(60vw, 80vh - 10vh));
+  height: calc(min(60vw, 80vh - 10vh));
+}

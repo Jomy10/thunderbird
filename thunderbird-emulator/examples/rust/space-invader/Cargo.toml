@@ -1,0 +1,13 @@
+[package]
+name = "space_invader"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+rust-api = { path = "../../../../rust-api" }
+rust-api-macros = { path = "../../../../rust-api-macros" }
+# nanorand = "0.5.2"
+quad-rand = "0.2.1"

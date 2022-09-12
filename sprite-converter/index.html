@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script type="module" src="sprite_converter.js"></script>
+  </head>
+  <body>
+    <script type="module">
+      console.log("???");
+      import init from './sprite_converter.js';
+      let exports = await init();
+      console.log(exports);
+      // console.log(exports);
+      // console.log(exports.test([0, 1, 2]));
+      
+      let png = ["474e5089", "0a1a0a0d", "0d000000", "52444849", "10000000", "10000000", "00000308","0f2d280", "00000053", "47527301", "ceae0042", "0000e91", "4c503300", "17164554", "22067f1a", "ff1124d6"];
+      console.log(png);
+
+      function hexToBytes(hex) {
+        console.log(hex);
+          for (var bytes = [], c = 0; c < hex.length; c += 2) {
+              console.log("b", bytes);
+              bytes.push(parseInt(hex.substr(c, 2), 16));
+              console.log("WTF");
+          }
+          console.log("b2",bytes);
+          return bytes;
+      }
+
+      console.log("?");
+
+      let byteArr = hexToBytes(png);
+      console.log(byteArr)
+      
+      let ptr = exports.alloc_arr(5);
+      let mem = exports.memory;
+      console.log(exports);
+      let memArr = new Uint8Array(mem.buffer);
+      for (let i = ptr; i < ptr + 5; i++) {
+        memArr[i] = byteArr[i];
+      }
+      exports.test(ptr, 5);
+    </script>
+  </body>
+</html>

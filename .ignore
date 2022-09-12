@@ -1,0 +1,4 @@
+# Helix ignore in file picker
+**/target
+**/node_modules
+/fantasy-console/wasm
