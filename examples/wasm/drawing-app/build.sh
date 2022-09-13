@@ -3,4 +3,4 @@
 set -e
 cd "$(dirname "$0")"
 
-wat2wasm main.wat -o ../../../wasm/drawing_app.wasm
+wat2wasm main.wat -o ../../../thunderbird-emulator/wasm/drawing_app.wasm

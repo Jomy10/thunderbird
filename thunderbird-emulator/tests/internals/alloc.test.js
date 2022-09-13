@@ -11,7 +11,7 @@ async function fetchWasm(file, imports) {
 let mem;
 let mod;
 beforeEach(async () => {
-  mem = new WebAssembly.Memory({initial: 4, maximum: 4});
+  mem = new WebAssembly.Memory({initial: 3, maximum: 3});
   const availableList = (await fetchWasm("wasm/alloc_available_list.wasm"));
   mod = await fetchWasm("wasm/alloc.wasm", {
     env: {

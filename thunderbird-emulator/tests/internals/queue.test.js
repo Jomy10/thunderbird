@@ -10,7 +10,7 @@ async function fetchWasm(file, imports) {
 let queue;
 let mem;
 beforeEach(async () => {
-  mem = new WebAssembly.Memory({initial: 4, maximum: 4});
+  mem = new WebAssembly.Memory({initial: 1, maximum: 1});
   queue = await fetchWasm("wasm/queue.wasm", {
     env: {
       memory: mem,
