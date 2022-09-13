@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 import { Switch, Match, createSignal } from 'solid-js';
 
 import {
-  HopeThemeConfig, HopeProvider,
+  HopeThemeConfig, HopeProvider, NotificationsProvider,
   HStack, Center } from '@hope-ui/solid';
 
 import styles from './App.module.css';
@@ -49,21 +49,23 @@ const App: Component = () => {
   return (<>
     <div style="overflow: hidden;">
       <HopeProvider config={hopeConfig}>
-        <Nav 
-          onSettings={() => { setOpen(Opened.Settings); }}
-          onDev={() => { setScreen(screen() === Screen.Emulator ? Screen.Developer : Screen.Emulator) }}
-          isDev={screen() === Screen.Developer}
-        />
-        <div class={styles.App}>
-          <Switch>
-            <Match when={screen() === Screen.Emulator}>
-              <EmulatorScreen open={open} setOpen={setOpen} />
-            </Match>
-            <Match when={screen() === Screen.Developer}>
-              <DeveloperTools/>
-            </Match>
-          </Switch>
-        </div>
+        <NotificationsProvider>
+          <Nav
+            onSettings={() => { setOpen(Opened.Settings); }}
+            onDev={() => { setScreen(screen() === Screen.Emulator ? Screen.Developer : Screen.Emulator) }}
+            isDev={screen() === Screen.Developer}
+          />
+          <div class={styles.App}>
+            <Switch>
+              <Match when={screen() === Screen.Emulator}>
+                <EmulatorScreen open={open} setOpen={setOpen} />
+              </Match>
+              <Match when={screen() === Screen.Developer}>
+                <DeveloperTools/>
+              </Match>
+            </Switch>
+          </div>
+        </NotificationsProvider>
       </HopeProvider>
     </div>
   </>);

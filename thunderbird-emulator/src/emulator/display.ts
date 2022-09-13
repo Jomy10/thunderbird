@@ -101,7 +101,7 @@ export default class Display {
   // 0b00000000
   //   ---===--
   //    r  g  b
-  private static __convertColorToRgb(color: number): Rgb8bitColor {
+  static __convertColorToRgb(color: number): Rgb8bitColor {
     let r3 = (color & 0b10000000) > 0 ? 1 : 0;
     let r2 = (color & 0b01000000) > 0 ? 1 : 0;
     let r1 = (color & 0b00100000) > 0 ? 1 : 0;
