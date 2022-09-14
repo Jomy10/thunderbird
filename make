@@ -28,4 +28,6 @@ command :test_internals do
   sys "cd thunderbird-emulator && #{NPM} run test"
 end
 
+## Build docs ##
+
 $beaver.end

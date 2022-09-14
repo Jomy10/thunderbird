@@ -6,10 +6,10 @@ import { Opened } from './developer';
 
 import { notificationService } from '@hope-ui/solid';
 
-import init from '../../wasm/sprite_converter/pkg/sprite_converter';
-import { ConvertReturnType } from '../../wasm/sprite_converter/pkg/sprite_converter';
-// import type { InitOutput } from '../../wasm/sprite_converter/pkg/sprite_converter';
+import init from '../sprite_converter/pkg/sprite_converter';
+import { ConvertReturnType } from '../sprite_converter/pkg/sprite_converter';
 import Display from '../emulator/display';
+import ScrollView from './scrollView';
 
 type Pixel = {
   x: number; 
@@ -106,7 +106,7 @@ const SpriteConverter: Component<{ setOpen: (o: Opened) => void }> = (props) => 
   }
 
   return (
-    <Box>
+    <ScrollView>
       <VStack>
         <HStack w="90vw">
           <button type="button" class="nes-btn" onclick={() => { props.setOpen(Opened.Tools) }}>Back</button>
@@ -123,7 +123,7 @@ const SpriteConverter: Component<{ setOpen: (o: Opened) => void }> = (props) => 
           <HStack style="margin-top: 10px;">
             <canvas id="canvas1" width="32" height="32"/>
             <Show when={pixArrL() != 0}>
-              <button class="nes-btn" onClick={() => { navigator.clipboard.writeText(ghost.value).then(() => {
+              <button class="nes-btn" style="margin-left:10px;" onClick={() => { navigator.clipboard.writeText(ghost.value).then(() => {
                 notificationService.show({
                   duration: 2_000,
                   render: (_) => {
@@ -141,7 +141,7 @@ const SpriteConverter: Component<{ setOpen: (o: Opened) => void }> = (props) => 
           </HStack>
         </div>
       </VStack>
-    </Box>
+    </ScrollView>
   );
 };
 

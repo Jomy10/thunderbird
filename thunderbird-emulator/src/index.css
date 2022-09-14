@@ -7,9 +7,14 @@
 
 body {
   margin: 0;
+  height: 100%;
   font-family: "PressStart2P";
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
 }
 
 img {

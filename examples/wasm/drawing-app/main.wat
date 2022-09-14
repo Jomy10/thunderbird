@@ -1,10 +1,17 @@
+;; TODO: check if something broke (probably did)
+
+;; A simple drawing app written in pure wasm.
+;; Move around the mouse and use the A button to draw.
+;; Use B to cycle through the colors.
+;; A 128x128 canvas is waiting for you.
+
 (module
-  ;; console imports
   (import "queue" "enqueue" (func $enqueue (param i32) (result i32)))
   (import "queue" "dequeue" (func $dequeue (result i32 i32)))
 
-  (import "env" "memory" (memory 4 4))
-  (import "console" "logN" (func $logN (param i32)))
+  ;; We will use memory to store the pixels that have been drawn
+  (import "env" "memory" (memory 3 3))
+  (import "env" "printN" (func $printN (param i32)))
 
   ;; game constants
   (global $KeyUp i32 (i32.const 128)) ;; 0b10000000
@@ -39,6 +46,8 @@
     i32.const 0
     i32.load8_u
   )
+
+  ;; functions for checking  key presses
   (func $isMovingUp (result i32)
     call $getFirstByte
     global.get $KeyUp
@@ -46,6 +55,7 @@
     global.get $KeyUp
     i32.eq
   )
+
   (func $isMovingDown (result i32)
     call $getFirstByte
     global.get $KeyDown
@@ -53,6 +63,7 @@
     global.get $KeyDown
     i32.eq
   )
+
   (func $isMovingLeft (result i32)
     call $getFirstByte
     global.get $KeyLeft
@@ -60,6 +71,7 @@
     global.get $KeyLeft
     i32.eq
   )
+
   (func $isMovingRight (result i32)
     call $getFirstByte
     global.get $KeyRight
@@ -67,6 +79,8 @@
     global.get $KeyRight
     i32.eq
   )
+
+  ;; Check which keys are pressed and move player acordingly
   (func $handleMovement
     call $isMovingUp
     (if
@@ -102,6 +116,7 @@
   )
 
   (global $colorCanChange (mut i32) (i32.const 1))
+  ;; Handle key press for color change (B)
   (func $handleColorChange
     ;; if key b pressed and !colorHasJustChanged
     call $getFirstByte
@@ -133,7 +148,7 @@
                 global.set $currentColorIdx))
 
             global.get $currentColorIdx
-            call $logN
+            call $printN
           )
         )
       )
@@ -203,7 +218,10 @@
     i32.add
   )
 
-  ;; Exported functions
+  ;; Exported functions ;;
+
+  ;; Is called once when the ROM is inserted.
+  ;; Used to initialize the game and assign initial variables
   (func (export "__init") (local $i i32)
     ;; store colors in memory
     global.get $CMemStart
@@ -263,6 +281,7 @@
     )
   )
 
+  ;; The main game loop. Called 60 times per second
   (func (export "__main")
     ;; read arrow keys
     call $handleMovement
@@ -310,6 +329,8 @@
     drop
   )
 
+  ;; Called when the ROM is ejected from the console.
   (func (export "__deinit")
+    nop ;; do nothing
   )
 )

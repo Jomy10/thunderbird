@@ -1,14 +1,11 @@
 import type { Component } from 'solid-js';
 import { onMount } from 'solid-js';
 
-import Emulator from '../emulator/main';
 import emLoader from '../emulator/loader';
 
 import styles from '../App.module.css';
 
 const Canvas: Component = () => {
-  let emulator: Emulator;
-
   let canvasEl: HTMLCanvasElement | undefined;
   onMount(async () => {
     await emLoader.load(canvasEl as HTMLCanvasElement)

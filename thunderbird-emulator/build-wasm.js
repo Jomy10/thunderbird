@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 const watDir = 'src/internals';
-const wasmOutDir = "wasm";
+const wasmOutDir = "public/wasm";
 
 /** Compiles all `.wat` files in the `watDir` to wasm in the `wasmOutDir` */
 async function compileWasm() {

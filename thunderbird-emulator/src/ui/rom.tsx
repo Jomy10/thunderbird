@@ -1,6 +1,9 @@
 import type { Component } from 'solid-js';
+import { For } from 'solid-js';
 
-import { VStack } from '@hope-ui/solid';
+import { VStack, Divider } from '@hope-ui/solid';
+
+import * as localForage from 'localforage';
 
 import emLoader from '../emulator/loader';
 
@@ -15,7 +18,7 @@ const Rom: Component<{loadRom: () => void, name: string, romImageLink?: string}>
   );
 };
 
-export const DefaultRom: Component<{file: string, name: string}> = (props) => {
+export const DefaultRom: Component<{file: string, name: string, img?: string}> = (props) => {
   function loadRom() {
     let req = new XMLHttpRequest();
     req.open('GET', `/wasm/${props.file}`);
@@ -28,9 +31,22 @@ export const DefaultRom: Component<{file: string, name: string}> = (props) => {
     req.send(null);
   }
   
-  return <Rom loadRom={loadRom} name={props.name} />
+  return <Rom loadRom={loadRom} name={props.name} romImageLink={props.img} />
 }
 
-export const UserRom: Component<{}> = () => {
-  return <div>TODO</div>;
+export const UserRom: Component<{key: string}> = (props) => {
+  async function loadRom() {
+    const romBytes: Uint8Array = (await localForage.getItem(props.key))!;
+    emLoader?.emulator?.loadRom(romBytes);
+  }
+
+  return <Rom loadRom={loadRom} name={props.key}></Rom>;
+}
+
+export const UserRoms: Component<{keys: string[]}> = (props) => {
+  console.log("keys", props.keys);
+  return <For each={props.keys}>{(rom, _i) => <>
+    <Divider/>
+    <UserRom key={rom}/>
+  </>}</For>;
 }

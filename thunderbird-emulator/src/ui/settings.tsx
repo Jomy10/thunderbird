@@ -1,16 +1,23 @@
 import type { Component } from 'solid-js';
 import { createEffect } from 'solid-js';
 
-import { Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerBody, DrawerHeader, createDisclosure } from '@hope-ui/solid';
+import { Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerBody, DrawerHeader, Divider, VStack, createDisclosure } from '@hope-ui/solid';
 
 import KeySettings from './settings_keys';
 
+import * as localForage from 'localforage';
+
 const Settings: Component<{isOpen: Boolean, onClose: () => void}> = (props) => {
-  const{ isOpen, onOpen, onClose } = createDisclosure();
+  const { isOpen, onOpen, onClose } = createDisclosure();
 
   createEffect(() => {
     if (props.isOpen) { console.log("Opened drawer"); onOpen(); }
   });
+  
+  async function clearRoms() {
+    await localForage.clear();
+    window.location.reload();
+  }
 
   return (<>
     <Drawer
@@ -23,8 +30,13 @@ const Settings: Component<{isOpen: Boolean, onClose: () => void}> = (props) => {
         <DrawerCloseButton icon={<i class="nes-icon close"></i>} />
         <DrawerHeader>Settings</DrawerHeader>
         <DrawerBody>
-          <h2>Remap keys</h2>
-          <KeySettings/>
+          <VStack spacing="10px">
+            <h2>Local roms</h2>
+            <button class="nes-btn is-error" onClick={clearRoms}>Remove all local roms</button>
+            <Divider/>
+            <h2>Remap keys</h2>
+            <KeySettings/>
+          </VStack>
         </DrawerBody>
       </DrawerContent>
     </Drawer>
