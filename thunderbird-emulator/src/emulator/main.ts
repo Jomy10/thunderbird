@@ -56,6 +56,16 @@ export default class Emulator {
     this._console = con
     this.allocator = alloc;
     this.keyboardManager = km;
+
+    let req = new XMLHttpRequest();
+    req.open('GET', `/wasm/start-screen.wasm`);
+    req.responseType = "arraybuffer";
+    req.onload = (_) => {
+      const arrayBuffer = req.response;
+      const byteBuffer = new Uint8Array(arrayBuffer);
+      this.loadRom(byteBuffer);
+    }
+    req.send(null);
   }
 
   /** @constructor */
@@ -116,7 +126,7 @@ export default class Emulator {
       cartridgeReader,
       __memArr,
     );
-    
+
     const allocator = await loadAlloc(game_memory);
 
     return new Emulator(
@@ -132,7 +142,7 @@ export default class Emulator {
       keyboardManager,
     );
   }
-  
+
   getKeys(): number {
     return this.__memArr[0];
   }
@@ -164,7 +174,7 @@ export default class Emulator {
       // Remove callback again
       this.processor.onExit = () => {};
     }; // fn
-    
+
     // let watcher = createWatcher(this.processor);
     if (this.processor.isRunning) {
       this.processor.onExit = () => {

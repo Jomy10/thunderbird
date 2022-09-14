@@ -1,5 +1,3 @@
-;; TODO: check if something broke (probably did)
-
 ;; A simple drawing app written in pure wasm.
 ;; Move around the mouse and use the A button to draw.
 ;; Use B to cycle through the colors.

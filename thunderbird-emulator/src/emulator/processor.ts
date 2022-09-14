@@ -40,7 +40,7 @@ export default class Processor {
     if (!quit) window.requestAnimationFrame(this.__mainFunc.bind(this));
     else {
       this.cartridgeLink.deinit();
-      this.isRunning = true;
+      this.isRunning = false;
       this.onExit();
     }
   }
