@@ -74,63 +74,6 @@ The color byte used in draw instructions has the following layout:
 
 Let's build a game now.
 
-### Setup
-
-We need to export 3 functions for the emulator to call.
-
-- `__init() -> void` is called once when the game is loaded
-- `__main() -> void` is called 60 times per second
-- `__deinit() -> void` is called once when the game exits
-
-<!-- tabs:start -->
-
-#### **Rust**
-
-In **lib.rs**:
-
-```rust
-use thunderbird as tb;
-
-#[no_mangle]
-extern "C" fn __init() {}
-
-#[no_mangle]
-extern "C" fn __main() {}
-
-#[no_mangle]
-extern "C" fn __deinit() {}
-```
-
-In **Cargo.toml**:
-
-```toml
-[lib]
-crate-type = ["cdylib"]
-
-[dependencies]
-thunderbird = "0.1"
-```
-
-#### **C**
-
-```c
-TODO
-```
-
-#### **WebAssembly**
-
-```wasm
-(module
-  (import "env" "enqueue" (func $enqueue (param i32) (result i32)))
-  
-  (func (export "__init"))
-  (func (export "__main"))
-  (func (export "__deinit"))
-)
-```
-
-<!-- tabs:end -->
-
 ### Sending an instruction to the queue
 
 In the following example we draw a rectangle to position 10, 20 with a width of
@@ -216,6 +159,7 @@ extern "C" fn __main() {
   // This code will eventually panic in debug mode, here's a nice trick to 
   // have wrapping of player x:
   // state.player_x.checked_add(1).unwrap_or(0);
+}
 ```
 
 #### **C**

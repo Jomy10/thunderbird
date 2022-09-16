@@ -2,59 +2,6 @@
 
 The developer API provides an easy to use wrapper around the queue calls.
 
-## Setup
-
-The setup is the same for the queue approach.
-
-<!-- tabs:start -->
-
-#### **Rust**
-
-In **lib.rs**:
-
-```rust
-use thunderbird as tb;
-
-#[no_mangle]
-extern "C" fn __init() {}
-
-#[no_mangle]
-extern "C" fn __main() {}
-
-#[no_mangle]
-extern "C" fn __deinit() {}
-```
-
-In **Cargo.toml**:
-
-```toml
-[lib]
-crate-type = ["cdylib"]
-
-[dependencies]
-thunderbird = "0.1"
-```
-
-#### **C**
-
-```c
-TODO
-```
-
-#### **WebAssembly**
-
-```wasm
-(module
-  (import "env" "enqueue" (func $enqueue (param i32) (result i32)))
-  
-  (func (export "__init"))
-  (func (export "__main"))
-  (func (export "__deinit"))
-)
-```
-
-<!-- tabs:end -->
-
 ## Game state
 
 Game state can be handled in multiple ways. The easiest is having a mutable
@@ -347,32 +294,7 @@ TODO
 
 #### **WebAssembly**
 
-```wasm
-(module
-  (import "env" "draw" (func $draw (param i32 i32)))
-  (import "env" "drawRect" (func $drawRect (param i32 i32)))
-  (import "env" "fill" (func $fill (param i32 i32)))
-  
-  (global $X (mut i32) (i32.const 0))
-  
-  (func (export "__main")
-    i32.const 255 ;; color
-    call $fill
-    
-    i32.const 10  ;; x
-    i32.const 10  ;; y
-    i32.const 245 ;; w
-    i32.const 245 ;; h
-    i32.const 224 ;; pure red color
-    call $drawRect
-    
-    global.get $X ;; x
-    i32.const 128 ;; y
-    i32.cost 7    ;; a nice shade of blue
-    call $draw
-  )
-)
-```
+The WebAssembly does not provide any exported constants for colors. Use integers.
 
 <!-- tabs:end -->
 

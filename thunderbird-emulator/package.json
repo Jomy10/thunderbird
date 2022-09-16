@@ -1,14 +1,14 @@
 {
   "name": "vite-template-solid",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "game-dev": "// TODO",
-    "build": "sh build-other.sh && vite build",
-    "serve": "vite preview",
-    "test": "jest --logHeapUsage"
+    "start": "sh reset-env.sh && vite",
+    "dev": "sh reset-env.sh && vite",
+    "game-dev": "sh run-development-mode.sh && vite",
+    "build": "sh reset-env.sh && sh build-other.sh && vite build",
+    "serve": "sh reset-env.sh && vite preview",
+    "test": "sh reset-env.sh && jest --logHeapUsage"
   },
   "license": "MIT",
   "devDependencies": {

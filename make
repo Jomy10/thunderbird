@@ -28,6 +28,9 @@ command :test_internals do
   sys "cd thunderbird-emulator && #{NPM} run test"
 end
 
-## Build docs ##
+## Docs ##
+command :serve_docs do
+  sys "docsify serve ./docs"
+end
 
 $beaver.end

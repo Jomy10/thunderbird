@@ -74,7 +74,7 @@ yarn run build
 
 ## Running the emulator
 
-Inside of the `thunderbird-emulator`, run the following:
+Inside of the `thunderbird-emulator` directory, run the following:
 
 <!-- tabs:start -->
 

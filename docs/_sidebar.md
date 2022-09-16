@@ -3,6 +3,11 @@
 
 * **Making a game**
 
+  * [Setup](setup)
   * [Using the queue](queue)
   * [Using the developer API](developer-api)
   * [Compiling](compiling)
+  * [Making a simple game](example-game)
+  
+* **Internals**
+  * TODO

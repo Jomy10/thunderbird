@@ -1,0 +1,6 @@
+set -e
+cd "$(dirname "$0")"
+
+mkdir game || true
+touch game/env.txt || true
+echo "prod" > game/env.txt
