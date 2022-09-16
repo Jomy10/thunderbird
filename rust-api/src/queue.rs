@@ -6,7 +6,7 @@ mod imports {
 
 /// Enqueue a byte to the queue
 pub fn enqueue(val: u8) -> Result<(), &'static str> {
-    if unsafe { imports::enqueue(val) } == 1 {
+    if unsafe { imports::enqueue(val) } == 0 {
         return Ok(());
     } else {
         return Err("Could not enqueue: queue is full");

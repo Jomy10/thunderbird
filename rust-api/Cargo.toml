@@ -1,7 +1,10 @@
 [package]
 name = "thunderbird"
-authors = ["Jonas Everaert"]
+description = "The developer API for the thunderbird fantasy console"
 license = "MIT"
+homepage = "https://docs.thunderbird.jomy.dev"
+repository = "https://github.com/jomy10/thunderbird"
+authors = ["Jonas Everaert"]
 version = "0.1.0"
 edition = "2021"
 
