@@ -2,7 +2,7 @@ import fetchWasm from "../util/fetchWasm";
 
 export type Allocator = {
   alloc: (bytes: number) => (number);
-  dealloc: (ptr: number, bytes: number) => void;
+  dealloc: (ptr: number, bytes: number) => number;
   setTo0: (ptr: number, bytes: number) => void;
   memSet: (ptr: number, byte: number) => void;
 };

@@ -34,12 +34,11 @@ pub mod console {
         
         // queue
         pub fn enqueue(val: u8) -> u8;
-        pub fn dequeue(val: u8) -> u8;
         
         // console
-        pub fn log(ptr: i32, size: i32);
-        pub fn logErr(ptr: i32, size: i32);
-        pub fn logN(n: i32);
+        pub fn print(ptr: i32, size: i32);
+        pub fn printErr(ptr: i32, size: i32);
+        pub fn printN(n: i32);
     }
 }
 

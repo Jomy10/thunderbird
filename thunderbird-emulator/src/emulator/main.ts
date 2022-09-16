@@ -150,6 +150,7 @@ export default class Emulator {
   /** Loads a rom from bytes into the cartridge reader */
   async loadRom(bytes: Uint8Array) {
     // Quit the currently running game
+    
     let fn = async () => {
       this.queue.enqueue(3);
       this.queue.enqueue(255);
@@ -158,7 +159,7 @@ export default class Emulator {
           draw: this.display.displayFunctions.__draw,
           drawRect: this.display.displayFunctions.__drawRect,
           fill: this.display.displayFunctions.__fill,
-          play: this.soundEngine.play.bind(this.soundEngine),
+          play: this.soundEngine.__playInstrument.bind(this.soundEngine),
           memory: this.game_memory,
           alloc: this.allocator.alloc,
           dealloc: this.allocator.dealloc,
@@ -169,6 +170,9 @@ export default class Emulator {
           print: this._console.log.bind(this._console),
           printErr: this._console.logErr.bind(this._console),
           printN: this._console.logN.bind(this._console),
+          enqueue: this.queue.enqueue,
+          __dequeue_result: this.__dequeue_result.bind(this),
+          availableQueueSize: this.queue.availableSize,
         },
         queue: this.queue,
       });
@@ -186,5 +190,10 @@ export default class Emulator {
     } else {
       await fn();
     }
+  }
+  
+  __dequeue_result(): number {
+    let [res, _val] = this.queue.dequeue();
+    return res;
   }
 }

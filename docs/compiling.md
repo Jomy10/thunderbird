@@ -31,8 +31,7 @@ TODO
 Use [wasm2wat](https://github.com/WebAssembly/wabt) to compile the game.
 
 ```sh
-wasm2wat my_game.wat > my_game.wasm
+wasm2wat my_game.wat -o my_game.wasm
 ```
 
 <!-- tabs:end -->
-

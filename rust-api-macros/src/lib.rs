@@ -9,7 +9,7 @@ pub fn color(item: TokenStream) -> TokenStream {
     let mut colors: [u8; 3] = [0,0,0];
     for (i, param) in params.enumerate() {
         colors[i] = param.trim().parse::<u8>().expect("Expected a number in color macro call.");
-        let c = (colors[i] as f32 / 256.0) * (2 as f32).powi(if i == 2 { 2 } else { 3 });
+        let c = (colors[i] as f32 / 255.0) * (2 as f32).powi(if i == 2 { 2 } else { 3 });
         colors[i] = c as u8;
     }
     

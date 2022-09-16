@@ -59,28 +59,26 @@ extern "C" fn __main() {
 //========================
 
 fn update(state: &mut State) -> Result<(), &'static str> {
-    let pressed = get_keys();
-    
     // Movement
-    if pressed & keys::UP == keys::UP {
+    if Keys::Up.is_pressed() {
         state.player.y = state.player.y.checked_sub(1).unwrap_or(255);
     }
-    if pressed & keys::DOWN == keys::DOWN {
+    if Keys::Down.is_pressed() {
         state.player.y = state.player.y.checked_add(1).unwrap_or(0);
     }
-    if pressed & keys::LEFT == keys::LEFT {
+    if Keys::Left.is_pressed() {
         state.player.x = state.player.x.checked_sub(1).unwrap_or(255);
     }
-    if pressed & keys::RIGHT == keys::RIGHT {
+    if Keys::Right.is_pressed() {
         state.player.x = state.player.x.checked_add(1).unwrap_or(0);
     }
     
     // Color changes
-    if pressed & keys::A == keys::A {
+    if Keys::A.is_pressed() {
         state.bg_color = state.bg_color.checked_add(1).unwrap_or(0);
         print_n(state.bg_color as i32);
     }
-    if pressed & keys::LBUTTON == keys::LBUTTON {
+    if Keys::LButton.is_pressed() {
         state.player.color = state.player.color.checked_add(1).unwrap_or(0);
     }
     

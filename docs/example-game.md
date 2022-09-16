@@ -4,9 +4,9 @@ In this chapter we will make a VERY simple game.
 
 - We will have a player that can move around using the arrow keys. The player will
   just be a simple dot on the screen. He can wrap around the screen.
-- The player can change color using the `A` button.
+- The player can change color using the `Left Trigger` button.
 - The player can play a sound using the `B` button.
-- The player can change the background color using the `L Button`.
+- The player can change the background color using the `A` buttton.
 
 ## Setup
 
@@ -57,7 +57,48 @@ Make sure to also make the `game` directory in the `thunderbird-emulator`.
 Now, run the above build script and [start the development console](developer-emulator#running-the-emulator).
 You should now see the screen has turned red.
 
-#### **Rust (queue)**
+#### **C (API)**
+
+Add this to `main.c`:
+
+```c
+#include "thunderbird.h"
+
+void __init() {
+  fill(0b11100000);
+}
+void __main() {}
+void __deinit() {}
+```
+
+Let's also add a little build script which builds our game and copies it to our
+[local development console](development-console) (you can also import the game
+online in the ROM library if you prefer):
+
+```bash
+SOURCE_FILE="main.c"
+OUT_FILE="/path/to/thunderbird/thunderbird-emulator/game/game.wasm"
+
+clang $SOURCE_FILE \
+  --target=wasm32 \
+  -nostdlib \
+  -O2 \
+  -Wl,--no-entry \
+  -Wl,--lto-O2 \
+  -Wl,--allow-undefined \
+  -Wl,--import-memory \
+  -Wl,--export=__main \
+  -Wl,--export=__init \
+  -Wl,--export=__deinit \
+  -o $OUT_FILE
+```
+
+\* If you haven't already, check out [compiling a game](compiling).
+
+Make sure to also make the `game` directory in the `thunderbird-emulator`.
+
+Now, run the above build script and [start the development console](developer-emulator#running-the-emulator).
+You should now see the screen has turned red.
 
 <!-- tabs:end -->
 
@@ -108,6 +149,31 @@ extern "C" fn __init() {
 }
 ```
 
+#### **C (API)**
+
+```c
+typedef struct {
+  uint8_t x;
+  uint8_t y;
+  uint8_t color;
+} player_t;
+
+typedef struct {
+  player_t player;
+  uint8_t bgColor;
+} state_t;
+
+static state_t* STATE;
+
+void __init() {
+  STATE = (state_t*) malloc(sizeof(state_t));
+  STATE->bgColor = 0b11111111;
+  STATE->player.x = 128;
+  STATE->player.y = 128;
+  STATE->player.color = 0b00000111;
+}
+```
+
 <!-- tabs:end -->
 
 ## Drawing the player
@@ -134,6 +200,23 @@ fn drawing(state: &State) -> Result<(), &'static str> {
 }
 ```
 
+#### **C (API)**
+
+```c
+void drawing(state_t* state) {
+  if (fill(state->bgColor) == 1) { exit(1); };
+  if (draw(state->player.x, state->player.y, state->player.color) == 1) { exit(1); }
+}
+
+void __main() {
+  drawing(STATE);
+}
+```
+
+> [!NOTE]
+> In this example we also handle errors. Instructions will return 1 if the
+> queue is full. Here we simply exit the game when an error occurs.
+
 <!-- tabs:end -->
 
 You can use your build script again and reload the console page. If you do so, you
@@ -141,7 +224,6 @@ should see a dot in the middle of the screen. In an actual game you probably wan
 make the player a little bigger than a single pixel.
 
 ## Handling input and moving the player
-
 
 ### PLayer movement
 
@@ -165,26 +247,55 @@ Our update logic looks like this:
 
 ```rust
 fn update(state: &mut State) -> Result<(), &'static str> {
-    let pressed = get_keys();
-    if pressed & keys::UP == keys::UP {
+    if Keys::Up.is_pressed() {
         state.player.y = state.player.y.checked_sub(1).unwrap_or(255);
     }
-    if pressed & keys::DOWN == keys::DOWN {
+    if Keys::Down.is_pressed() {
         state.player.y = state.player.y.checked_add(1).unwrap_or(0);
     }
-    if pressed & keys::LEFT == keys::LEFT {
+    if Keys::Left.is_pressed() {
         state.player.x = state.player.x.checked_sub(1).unwrap_or(255);
     }
-    if pressed & keys::RIGHT == keys::RIGHT {
+    if Keys::Right.is_pressed() {
         state.player.x = state.player.x.checked_add(1).unwrap_or(0);
     }
-    
+
     return Ok(());
 }
 ```
 
 We use `checked_add` and `checked_sub` to wrap the player to the other side of the screen
 when he reaches the end.
+
+#### **C (API)**
+
+Our new main loop looks like this:
+
+```c
+void __main() {
+  update(STATE);
+  drawing(STATE);
+}
+```
+
+Our update logic looks like this:
+
+```c
+void update(state_t* state) {
+  if (is_pressed(UP)) {
+    state->player.y -= 1;
+  }
+  if (is_pressed(DOWN)) {
+    state->player.y += 1;
+  }
+  if (is_pressed(LEFT)) {
+    state->player.x -= 1;
+  }
+  if (is_pressed(RIGHT)) {
+    state->player.x += 1;
+  }
+}
+```
 
 <!-- tabs:end -->
 
@@ -202,11 +313,32 @@ Try writing the code for changing colors now. It should be simple with your curr
 Add this to the update function:
 
 ```rust
-if pressed & keys::A == keys::A {
+if Keys::A.is_pressed() {
     state.bg_color = state.bg_color.checked_add(1).unwrap_or(0);
 }
-if pressed & keys::LBUTTON == keys::LBUTTON {
+if Keys::LButton.is_pressed() {
     state.player.color = state.player.color.checked_add(1).unwrap_or(0);
+}
+```
+
+> [!NOTE]
+> Use the `thunberbird-macros` crate to use the `color!` macro.
+>
+> **Example**
+> ```rust
+> color!(255 0 10)
+> ```
+
+#### **C (API)**
+
+Add this to the update function:
+
+```c
+if (is_pressed(A)) {
+  state->bgColor += 1;
+}
+if (is_pressed(LBUTTON)) {
+  state->player.color += 1;
 }
 ```
 
@@ -228,13 +360,25 @@ Let's also print out the background color code to the console.
 
 <!-- tabs:start -->
 
-#### **Rust (API)
+#### **Rust (API)**
 
-Add this to the inside of the `if pressed & keys::A == keys::A` statement:
+Add this to the inside of the `if Key::A.is_pressed()` statement:
 
 ```rust
 print_n(state.bg_color as i32);
 ```
+
+The `print` and `print_err` functions are also available.
+
+#### **C (API)**
+
+Add this to the inside of the `if (isPressed(A))` statement:
+
+```c
+printN(state->bgColor);
+```
+
+// TODO: print and printErr exist as well and talk about printf.h
 
 <!-- tabs:end -->
 
@@ -246,6 +390,19 @@ You can look at the full source code of this example on github
 
 ##### **Rust (API)**
 
-[View on github](https://github.com/jomy10/thunderbird/docs/examples/rust-api)
+[View on GitHub](https://github.com/jomy10/thunderbird/docs/examples/rust-api)
+
+#### **C (API)**
+
+[View on GitHub](https://github.com/jomy10/thunderbird/docs/examples/c-api/main.c)
 
 <!-- tabs:end -->
+
+## Continue reading
+
+If you haven't already, go to [using the queue](queue) or [using the developer API](developer-api)
+to read more.
+
+You can also take a look at the [Rust API documentation](https://docs.rs/thunderbird/0.1.0/thunderbird/);
+
+You can look at the [C header](https://github.com/jomy10/thunderbird/c-api//thunderbird.h)

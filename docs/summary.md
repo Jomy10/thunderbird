@@ -13,5 +13,7 @@ the Thunderbird fantasy console. The documetation is divided into the following 
 - [Creating a game using the developer APIs](developer-api)
   - An easier approach to making a game.
 - [Compiling a game](compiling)
-  - How to compile your game (works for games written using the API and the queue)
-
+  - How to compile your game (works for games written using the API and the queue).
+- [Making a simple game](example-game)
+  - Get hands on and make a simple game covering the important aspects (handling input,
+    handling state, drawing to the screen and playing sound).

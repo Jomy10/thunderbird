@@ -99,11 +99,11 @@ To check if `down` is pressed, we do the following:
 #### **Rust**
 
 ```rust
-use thunderbird::{get_keys, keys::DOWN};
+use thunderbird::{Keys};
 
 #[no_mangle]
 extern "C" fn __main() {
-  if get_keys() & DOWN == DOWN {
+  if Keys::Down.is_pressed() {
     // down is pressed
   }
 }
@@ -285,6 +285,14 @@ extern "C" fn __main() {
   fill(Colors::White.into());
 }
 ```
+
+> [!NOTE]
+> You can use the `thunberbird-macros` crate to use the `color!` macro.
+>
+> **Example**
+> ```rust
+> color!(255 0 10)
+> ```
 
 #### **C**
 
