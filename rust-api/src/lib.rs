@@ -9,6 +9,8 @@ pub use logger::*;
 pub mod keyboard;
 pub use keyboard::*;
 pub mod panic;
+pub mod queue;
+pub use queue::*;
 
 /// Wasm imports
 pub mod console {
@@ -30,8 +32,13 @@ pub mod console {
         
         pub fn getTimestamp() -> i32;
         
+        // queue
+        pub fn enqueue(val: u8) -> u8;
+        pub fn dequeue(val: u8) -> u8;
+        
         // console
         pub fn log(ptr: i32, size: i32);
+        pub fn logErr(ptr: i32, size: i32);
         pub fn logN(n: i32);
     }
 }

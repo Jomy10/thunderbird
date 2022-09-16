@@ -151,6 +151,8 @@ export default class Emulator {
   async loadRom(bytes: Uint8Array) {
     // Quit the currently running game
     let fn = async () => {
+      this.queue.enqueue(3);
+      this.queue.enqueue(255);
       await this.cartridgeReader.__loadRom(bytes, {
         env: {
           draw: this.display.displayFunctions.__draw,

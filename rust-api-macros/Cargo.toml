@@ -1,5 +1,5 @@
 [package]
-name = "rust-api-macros"
+name = "thunderbird-macros"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,5 +7,3 @@ edition = "2021"
 proc-macro = true
 
 [dependencies]
-# syn = "1.0"
-# quote = "1.0"

@@ -5,6 +5,7 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
+    "game-dev": "// TODO",
     "build": "sh build-other.sh && vite build",
     "serve": "vite preview",
     "test": "jest --logHeapUsage"
