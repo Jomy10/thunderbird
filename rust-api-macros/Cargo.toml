@@ -1,5 +1,10 @@
 [package]
 name = "thunderbird-macros"
+description = "Macros for the thunderbird developer API"
+license = "MIT"
+homepage = "https://docs.thunderbird.jomy.dev"
+repository = "https://github.com/jomy10/thunderbird"
+authors = ["Jonas Everaert"]
 version = "0.1.0"
 edition = "2021"
 
