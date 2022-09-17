@@ -24,7 +24,24 @@ The game is located in `target/wasm32-unknown-unknown/release/my_game.wasm`.
 
 #### **C**
 
-TODO
+Make sure you have **LLVM** installed and your path to it has been set up correctly.
+
+Then compile your game like this (with `main.c` as source file and `game.wasm` as output):
+
+```sh
+clang main.c \
+  --target=wasm32 \
+  -nostdlib \
+  -O2 \
+  -Wl,--no-entry \
+  -Wl,--lto-O2 \
+  -Wl,--allow-undefined \
+  -Wl,--import-memory \
+  -Wl,--export=__main \
+  -Wl,--export=__init \
+  -Wl,--export=__deinit \
+  -o game.wasm
+```
 
 #### **WebAssembly**
 

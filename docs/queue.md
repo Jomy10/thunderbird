@@ -314,7 +314,7 @@ of choice. This can usually be down with a `right click > inspect`.
 #### **Rust**
 
 ```rust
-use thunderbird::{print, printN, printErr};
+use thunderbird::{print, print_n, print_err};
 
 #[no_mangle]
 extern "C" fn __init() {
@@ -322,10 +322,10 @@ extern "C" fn __init() {
   print("Hello world");
   
   // print a number
-  printN(60);
+  print_n(60);
 
   // print an error
-  printErr("Error: something went wrong");
+  print_err("Error: something went wrong");
 }
 ```
 
@@ -357,7 +357,7 @@ void __init() {
 >
 > ```c
 > curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/printf.h" > printf.h
-> curl "https://github.com/Jomy10/thunderbird/blob/master/c-api/sprintf.h" > sprintf.h
+> curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/sprintf.h" > sprintf.h
 > ```
 >
 > Then include it in your project:

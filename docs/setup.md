@@ -61,9 +61,27 @@ in the `extern` block.
 
 #### **C**
 
+Copy the [`thunderbird.h` file](https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/thunderbird.h) to your project.
+
 ```c
-TODO
+curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/thunderbird.h" > thunderbird.h
 ```
+
+You can also include the optional header file `printf`.
+To do this, copy the [`printf.h`](https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/printf.h)
+and [`sprintf.h`](https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/sprintf.h) header files to your project:
+
+```c
+curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/printf.h" > printf.h
+curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/sprintf.h" > sprintf.h
+```
+
+Then include it in your project:
+```c
+#include "printf.h"
+```
+
+The `printf` and `sprintf` functions will now be available like from the C standard library.
 
 #### **WebAssembly**
 
