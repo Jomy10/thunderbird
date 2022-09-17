@@ -95,8 +95,16 @@ tb::enqueue(0b11100000).unwrap(); // Red color
 #### **C**
 
 ```c
-TODO
+enqueue(1);  // draw instruction
+enqueue(10); // x
+enqueue(20); // y
+enqueue(30); // w
+enqueue(60); // h
+enqueue(0b11100000); // Red color
 ```
+
+> [!NOTE]
+> The enqueue function will return 1 if an error occurs
 
 #### **WebAssembly**
 
@@ -165,8 +173,24 @@ extern "C" fn __main() {
 #### **C**
 
 ```c
-TODO
+typedef struct {
+  uint8_t player_x;
+} state_t;
+
+static state_t* STATE;
+
+void __init() {
+  STATE = (state_t*) malloc(sizeof(state_t));
+  STATE->player_x = 128;
+}
+
+void __main() {
+  STATE->player_x += 1;
+}
 ```
+
+> [!WARNING]
+> Always store pointers in static object, not the actual object.
 
 #### **WebAssembly**
 
@@ -198,11 +222,15 @@ Use Rust as usual.
 
 #### **C**
 
-use `malloc`, `calloc` and `free` as usual.
+use `malloc`, `calloc` and `free` as usual (imported by `thunderbird.h`).
+
 
 #### **WebAssembly**
 
 Access memory with `i32.store8` and `i32.load8_u`.
+
+The `(func $alloc (param $size i32) (result i32))` and `(func $dealloc (param $ptr i32) (param $size i32) (result i32))`
+can also be imported.
 
 <!-- tabs:end -->
 
@@ -239,7 +267,13 @@ extern "C" fn __main() {
 
 #### **C**
 
-TODO
+```c
+void __main() {
+  if getKeys() & 0b01000000 == 0b01000000 {
+    // down is pressed
+  }
+}
+```
 
 #### **WebAssembly**
 
@@ -298,8 +332,44 @@ extern "C" fn __init() {
 #### **C**
 
 ```c
-TODO
+#include <string.h>
+
+void __init() {
+  // print a string
+  char* str = malloc(11);
+  strcpy(str, "Hello world");
+  print(str);
+  
+  // print a number
+  printN(60);
+  
+  // print an error
+  char* err = malloc(5);
+  strcpy(err, "Error");
+  printErr(err);
+}
 ```
+
+> [!NOTE]
+> You can also include the optional header file `printf`.
+> To do this, copy the [`printf.h`](https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/printf.h)
+> and [`sprintf.h`](https://github.com/Jomy10/thunderbird/blob/master/c-api/sprintf.h) header files to your project:
+>
+> ```c
+> curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/printf.h" > printf.h
+> curl "https://github.com/Jomy10/thunderbird/blob/master/c-api/sprintf.h" > sprintf.h
+> ```
+>
+> Then include it in your project:
+> ```c
+> #include "printf.h"
+>
+> void __init() {
+>   printf("Hello %s", "world");
+> }
+> ```
+>
+> The `printf` and `sprintf` functions will now be available like from the C standard library.
 
 #### **WebAssembly**
 
@@ -360,7 +430,7 @@ extern "C" fn __init() {
 #### **C**
 
 ```c
-TODO
+int timestamp = getTimestamp();
 ```
 
 #### **WebAssembly**

@@ -23,25 +23,25 @@ void __init() {
 
 void update(state_t* state) {
   // player movement
-  if (is_pressed(UP)) {
+  if (isPressed(UP)) {
     state->player.y -= 1;
   }
-  if (is_pressed(DOWN)) {
+  if (isPressed(DOWN)) {
     state->player.y += 1;
   }
-  if (is_pressed(LEFT)) {
+  if (isPressed(LEFT)) {
     state->player.x -= 1;
   }
-  if (is_pressed(RIGHT)) {
+  if (isPressed(RIGHT)) {
     state->player.x += 1;
   }
   
   // color change
-  if (is_pressed(A)) {
+  if (isPressed(A)) {
     printN(state->bgColor);
     state->bgColor += 1;
   }
-  if (is_pressed(LBUTTON)) {
+  if (isPressed(LBUTTON)) {
     state->player.color += 1;
   }
 }

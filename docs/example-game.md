@@ -282,16 +282,16 @@ Our update logic looks like this:
 
 ```c
 void update(state_t* state) {
-  if (is_pressed(UP)) {
+  if (isPressed(UP)) {
     state->player.y -= 1;
   }
-  if (is_pressed(DOWN)) {
+  if (isPressed(DOWN)) {
     state->player.y += 1;
   }
-  if (is_pressed(LEFT)) {
+  if (isPressed(LEFT)) {
     state->player.x -= 1;
   }
-  if (is_pressed(RIGHT)) {
+  if (isPressed(RIGHT)) {
     state->player.x += 1;
   }
 }
@@ -334,10 +334,10 @@ if Keys::LButton.is_pressed() {
 Add this to the update function:
 
 ```c
-if (is_pressed(A)) {
+if (isPressed(A)) {
   state->bgColor += 1;
 }
-if (is_pressed(LBUTTON)) {
+if (isPressed(LBUTTON)) {
   state->player.color += 1;
 }
 ```
@@ -403,6 +403,6 @@ You can look at the full source code of this example on github
 If you haven't already, go to [using the queue](queue) or [using the developer API](developer-api)
 to read more.
 
-You can also take a look at the [Rust API documentation](https://docs.rs/thunderbird/0.1.0/thunderbird/);
+You can also take a look at the [Rust API documentation](https://docs.rs/thunderbird/0.1.0/thunderbird/).
 
-You can look at the [C header](https://github.com/jomy10/thunderbird/c-api//thunderbird.h)
+You can look at the [C header](https://github.com/jomy10/thunderbird/c-api/thunderbird.h).

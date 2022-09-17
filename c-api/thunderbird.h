@@ -65,7 +65,7 @@ int availableQueueSize();
 // funcs //
 
 // Check if a button is pressed
-int is_pressed(uint8_t key) {
+int isPressed(uint8_t key) {
   return (getKeys() & key) == key;
 }
 
