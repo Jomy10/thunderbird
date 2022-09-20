@@ -25,7 +25,7 @@
     "@stitches/core": "^1.2.8",
     "localforage": "^1.10.0",
     "nes.css": "^2.3.0",
-    "solid": "link:@hope-ui/solid",
+    "solid": "@hope-ui/solid",
     "solid-js": "^1.5.1",
     "solid-transition-group": "^0.0.10",
     "tone": "^14.7.77"
