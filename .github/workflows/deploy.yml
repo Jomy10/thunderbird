@@ -70,3 +70,8 @@ jobs:
       
       - name: ls dist
         run: ls thunderbird-emulator/dist
+  
+  ls:
+    steps:
+      - name: ls dist
+        run: ls thunderbird-emulator/dist
