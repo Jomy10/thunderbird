@@ -55,6 +55,9 @@ jobs:
       - name: build wasm example
         run: sh examples/wasm/drawing-app/build.sh
       
+      - name: test
+        run: sudo apt-get install bat && bat /home/runner/work/_temp
+      
       - name: build c example
         run: --versbash examples/c/music/build.sh -no-llvm-path
       
