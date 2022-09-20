@@ -1,8 +1,5 @@
 mod imports {
     extern "C" {
-        // pub fn play0(note: u8, length: u8);
-        // pub fn play1(note: u8, length: u8);
-        // pub fn play2(note: u8, length: u8);
         pub fn play(instrument: u8, note: u8, length: u8);
     }
 }
@@ -53,7 +50,7 @@ impl NoteLengthFloat {
         Self { base, shift }
     }
     pub fn to_u8(&self) -> u8 {
-        ((self.base << 4) | (self.shift << 2)).checked_shl(2).expect("NoteLengthFloat.to_u8 overflowed")
+        ((self.base << 4) | (self.shift << 2)).checked_shr(2).expect("NoteLengthFloat.to_u8 overflowed")
     }
 }
 
