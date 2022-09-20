@@ -26,7 +26,7 @@ jobs:
         run: cd thunderbird-emulator && pnpm install
       
       - name: install wasm32 rust target
-        run: rustup add wasm32-unknown-unknown
+        run: rustup target add wasm32-unknown-unknown
       
       - name: build emulator
         run: cd thunderbird-emulator && pnpm run build
