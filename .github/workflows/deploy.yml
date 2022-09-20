@@ -30,8 +30,8 @@ jobs:
       - name: install wasm32 rust target
         run: rustup target add wasm32-unknown-unknown
       
-      - name: install lld
-        run: sys-devel/lld
+      - name: install llvm
+        run: sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
       
       - name: install wabt
         # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
