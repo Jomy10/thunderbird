@@ -13,7 +13,7 @@ do
   
     if [[ "$var" == "--pass-c-example" ]]; then
       PREV_ARG="c"
-    elif [[ "$var" == "--sh" ]]
+    elif [[ "$var" == "--sh" ]]; then
       PREV_ARG="sh"
     fi
     
