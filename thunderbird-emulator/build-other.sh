@@ -26,5 +26,8 @@ sh ../examples/rust/space-invader/build.sh
 sh ../examples/wasm/drawing-app/build.sh
 sh ../examples/c/music/build.sh $C_ARGS
 
+# Build sprite converter
+sh ../sprite-converter/build.sh
+
 # Build wasm
 node build-wasm.js

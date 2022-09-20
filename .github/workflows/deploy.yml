@@ -63,6 +63,12 @@ jobs:
       - name: build c example
         run: PATH="/usr/lib/llvm-15/bin:$PATH" bash examples/c/music/build.sh -no-llvm-path
       
+      - name: build sprite converter
+        run: cd sprite-converter && bash build.sh
+      
+      - name: build wasm internals
+        run: cd thunderbird-emulator && node build-wasm.js
+      
       - name: build emulator
         run: cd thunderbird-emulator && sh reset-env.sh && pnpm build-only
       
