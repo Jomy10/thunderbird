@@ -10,10 +10,10 @@ LLVM_PATH=true
 
 PREV_ARG="nil"
 
-echo "PREV_ARG=$PREV_ARG"
-
 for var in "$@"
 do
+
+  echo "argument: $var"
 
   if [[ "$PREV_ARG" == "nil" ]]; then
   

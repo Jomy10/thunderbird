@@ -39,7 +39,7 @@ jobs:
       
       
       - name: build emulator
-        run: cd thunderbird-emulator && pnpm run build
+        run: cd thunderbird-emulator && sh reset-env.sh && sh build-other.sh --pass-c-example -no-llvm-path --pass-c-example --llvm --pass-c-example 14 && pnpm run build-only
       
       - name: ls dist
         run: ls thunderbird-emulator/dist
