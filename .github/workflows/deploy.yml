@@ -44,7 +44,7 @@ jobs:
 
       - name: install wabt
         # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
-        run: sudo apt-get -y install wabt
+        run: sudo apt install wabt
       
       - name: install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh 
