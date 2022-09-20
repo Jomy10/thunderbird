@@ -36,14 +36,10 @@ jobs:
       - name: install llvm
         run: sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
       
-      # - name: install clang14
-      #   run: sudo apt-get -y install clang-13 && clang --version && clang14 --versio
-      
       - name: install lld
         run: sudo apt-get install lld-10
 
       - name: install wabt
-        # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
         run: sudo apt-get -y install wabt
       
       - name: install wasm-pack
@@ -59,12 +55,14 @@ jobs:
       - name: build c example
         run: PATH="/usr/lib/llvm-15/bin:$PATH" bash examples/c/music/build.sh -no-llvm-path
       
+      # Build wasm
       - name: build sprite converter
         run: cd sprite-converter && bash build.sh
       
       - name: build wasm internals
         run: cd thunderbird-emulator && bash build-wasm-sh-version.sh
       
+      # Build emulator
       - name: build emulator
         run: cd thunderbird-emulator && sh reset-env.sh && pnpm build-only
       
@@ -72,6 +70,7 @@ jobs:
         run: ls thunderbird-emulator/dist
   
   ls:
+    runs-on: ubuntu-latest
     steps:
       - name: ls dist
         run: ls thunderbird-emulator/dist
