@@ -47,10 +47,10 @@ jobs:
         run: sh examples/wasm/drawing-app/build.sh
       
       - name: build c example
-        run: sh examples/c/music/build.sh -no-llvm-path --clang 14
+        run: bash examples/c/music/build.sh -no-llvm-path --clang 14
       
       - name: build emulator
-        run: cd thunderbird-emulator && sh reset-env.sh
+        run: cd thunderbird-emulator && sh reset-env.sh && pnpm build-only
       
       - name: ls dist
         run: ls thunderbird-emulator/dist
