@@ -6,7 +6,7 @@ The Thunderbird console has a controller with 8 buttons, because this fits into 
 
 There are 8 buttons on the controller: A, B, Left, Right, Up, Down, Left trigger (LB) and Right trigger (RB).
 
-![buttons](https://docs.thunderbird.jomy.dev/_media/buttons.png)
+![buttons](https://docs.thunderbird.jomy.dev/_media/buttons.png ':size=500')
 
 ## Pressed buttons
 

@@ -11,3 +11,7 @@
   
 * **Internals**
   * [Controller](internals/controller)
+  * [Instruction queue](internals/queue)
+  * [The processor](internals/processor)
+  * [Assembly](internals/asm)
+  * [A game](internals/game)
