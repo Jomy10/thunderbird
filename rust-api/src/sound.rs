@@ -1,12 +1,14 @@
 mod imports {
     extern "C" {
-        pub fn play0(note: u8, length: u8);
-        pub fn play1(note: u8, length: u8);
-        pub fn play2(note: u8, length: u8);
+        // pub fn play0(note: u8, length: u8);
+        // pub fn play1(note: u8, length: u8);
+        // pub fn play2(note: u8, length: u8);
+        pub fn play(instrument: u8, note: u8, length: u8);
     }
 }
 
 /// The instrument to be used
+#[repr(u8)]
 pub enum Instrument {
     Pulse,
     Square,
@@ -72,9 +74,5 @@ impl NoteLength {
 
 #[inline]
 pub fn play(instr: Instrument, note: Note, length: NoteLength) {
-    match instr {
-        Instrument::Pulse => unsafe { imports::play0(note.build(), length.build()) },
-        Instrument::Square => unsafe { imports::play1(note.build(), length.build()) },
-        Instrument::Triangle => unsafe { imports::play2(note.build(), length.build()) },
-    }
+    unsafe { imports::play(instr as u8, note.build(), length.build()); }
 }
