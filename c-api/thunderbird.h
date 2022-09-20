@@ -33,9 +33,30 @@ int fill(uint8_t color);
 // Play a note
 int play(uint8_t instrument, uint8_t note, uint8_t length);
 
+// Instruments
+#define I_PULSE 0
+#define I_SQUARE 1
+#define I_TRIANGLE 2
+
+// Notes
+#define NOTE_A 0b00000000
+#define NOTE_B 0b00100000
+#define NOTE_C 0b01000000
+#define NOTE_D 0b01100000
+#define NOTE_E 0b10000000
+#define NOTE_F 0b10100000
+#define NOTE_G 0b11000000
+
+// Length types
+#define L_SECOND 0
+#define L_NOTE 1
+#define L_TRIPLET 2
+#define L_MEASURE 3
+
 // Get the first byte in memory
 uint8_t getKeys();
 
+// Keys
 #define UP 0b10000000
 #define DOWN 0b01000000
 #define LEFT 0b00100000
@@ -143,12 +164,12 @@ void exit(int code) {
 }
 
 // Convert r g b values to 8 bit color
-// static inline uint8_t color(uint8_t r, uint8_t g, uint8_t b) {
-//   return (
-//     ((uint8_t) ((r / 255.0f) * pow(2.0f, 3.0f))) << 5 |
-//     ((uint8_t) ((g / 255.0f) * pow(2.0f, 3.0f))) << 2 |
-//     ((uint8_t) ((b / 255.0f) * pow(2.0f, 2.0f)))
-//   );
-// }
+static inline uint8_t color(uint8_t r, uint8_t g, uint8_t b) {
+  return (
+    ((uint8_t) ((r / 255.0f) * (2.0f * 2.0f * 2.0f))) << 5 |
+    ((uint8_t) ((g / 255.0f) * (2.0f * 2.0f * 2.0f))) << 2 |
+    ((uint8_t) ((b / 255.0f) * (2.0f * 2.0f)))
+  );
+}
 
 #endif

@@ -142,14 +142,45 @@
   )
 
   ;; set the byte at the location of the ptr
-  (func $memSet (param $ptr i32) (param $byte i32)
+  (func $memSetByte (param $ptr i32) (param $byte i32)
     local.get $ptr
     local.get $byte
-    i32.store
+    i32.store8
+  )
+
+  ;; Copies byte $val to the first n bytes of memory starting at $val
+  (func $memSet (param $ptr i32) (param $val i32) (param $byteNum i32)
+    ;; do while $byteum != 0
+    (loop $lp
+      local.get $byteNum
+      i32.const 1
+      i32.sub
+
+      local.get $ptr
+      i32.add
+  
+      local.get $val
+      
+      ;; mem[ptr + byteNum] = val
+      i32.store8
+      
+      local.get $byteNum
+      i32.eqz
+    
+      (if
+        (then
+          nop
+        )
+        (else
+          br $lp
+        )
+      ) ;; if
+    ) ;; loop
   )
 
   (export "alloc" (func $alloc))
   (export "dealloc" (func $dealloc))
   (export "setTo0" (func $setTo0))
+  (export "memSetByte" (func $memSetByte))
   (export "memSet" (func $memSet))
 )

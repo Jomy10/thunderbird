@@ -4,7 +4,8 @@ export type Allocator = {
   alloc: (bytes: number) => (number);
   dealloc: (ptr: number, bytes: number) => number;
   setTo0: (ptr: number, bytes: number) => void;
-  memSet: (ptr: number, byte: number) => void;
+  memSetByte: (ptr: number, byte: number) => void;
+  memSet: (ptr: number, val: number, length: number) => void;
 };
 
 export default async function loadAlloc(

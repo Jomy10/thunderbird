@@ -113,52 +113,55 @@
                 )
 
                 ;; play0 note lengh
-                ;; i32.const 4
-                ;; local.get $instruction
-                ;; i32.eq
-                ;; (if
-                ;;     (then
-                ;;         call $dequeue
-                ;;         drop
-                ;;         call $dequeue
-                ;;         drop
-                ;;         call $play0
+                i32.const 4
+                local.get $instruction
+                i32.eq
+                (if
+                    (then
+                        call $dequeue
+                        drop
+                        call $dequeue
+                        drop
+                        call $play0
 
-                ;;         br $execInstruction ;; stop looking for matchin instruction
-                ;;     )
-                ;; )
+                        br $execInstruction ;; stop looking for matchin instruction
+                    )
+                )
 
                 ;; ;; play1 note lengh
-                ;; i32.const 5
-                ;; local.get $instruction
-                ;; i32.eq
-                ;; (if
-                ;;     (then
-                ;;         call $dequeue
-                ;;         drop
-                ;;         call $dequeue
-                ;;         drop
-                ;;         call $play1
+                i32.const 5
+                local.get $instruction
+                i32.eq
+                (if
+                    (then
+                        call $dequeue
+                        drop
+                        call $dequeue
+                        drop
+                        call $play1
 
-                ;;         br $execInstruction ;; stop looking for matchin instruction
-                ;;     )
-                ;; )
+                        br $execInstruction ;; stop looking for matchin instruction
+                    )
+                )
 
                 ;; ;; play2 note lengh
-                ;; i32.const 6
-                ;; local.get $instruction
-                ;; i32.eq
-                ;; (if
-                ;;     (then
-                ;;         call $dequeue
-                ;;         drop
-                ;;         call $dequeue
-                ;;         drop
-                ;;         call $play2
+                i32.const 6
+                local.get $instruction
+                i32.eq
+                (if
+                    (then
+                        call $dequeue
+                        drop
+                        call $dequeue
+                        drop
+                        call $play2
 
-                ;;         br $execInstruction ;; stop looking for matchin instruction
-                ;;     )
-                ;; )
+                        br $execInstruction ;; stop looking for matchin instruction
+                    )
+                )
+                
+                i32.const -1
+                call $logN
                 
                 local.get $instruction
                 call $logN

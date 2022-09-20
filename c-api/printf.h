@@ -22,10 +22,11 @@ static inline int __thunderbird_sum(int argCount, ...) {
 }
 
 #define printf(format, ...) { \
-int bufferSize = _strnlen_s(format) + __thunderbird_sum(__TB_NARG(__VA_ARGS__) , __VA_ARGS__); \
-char* str = alloc(bufferSize); \
+int bufferSize = _strnlen_s(format, 1000) + __thunderbird_sum(__TB_NARG(__VA_ARGS__) , __VA_ARGS__); \
+char* str = (char*) alloc(bufferSize); \
 sprintf(str, format, __VA_ARGS__); \
-print(str, _strnlen_s(str)); \
+int str_size = _strnlen_s(str, 1000); \
+print(str, str_size); \
 dealloc(str, bufferSize); \
 }
 

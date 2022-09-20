@@ -5,7 +5,7 @@ mod imports {
         pub fn printN(n: i32);
         pub fn alloc(size: i32) -> i32;
         pub fn dealloc(ptr: i32, byteSize: i32) -> i32;
-        pub fn memSet(ptr: i32, byte: u8);
+        pub fn memSetByte(ptr: i32, byte: u8);
     }
 }
 
@@ -16,7 +16,7 @@ fn str_to_wasm_ptr(str: &str) -> (i32, i32) {
         let ptr = imports::alloc(len);
         let bytes: &[u8] = str.as_bytes();
         for i in 0..(len as usize) {
-            imports::memSet(ptr + (i as i32), bytes[i]);
+            imports::memSetByte(ptr + (i as i32), bytes[i]);
         }
         return (ptr, len);
     }

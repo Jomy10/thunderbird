@@ -63,15 +63,27 @@ in the `extern` block.
 
 Copy the [`thunderbird.h` file](https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/thunderbird.h) to your project.
 
-```c
+```sh
 curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/thunderbird.h" > thunderbird.h
 ```
+
+Then add this to your main source file.
+
+```c
+#include "thunderbird.h"
+
+void __init() {}
+void __main() {}
+void __deinit() {}
+```
+
+Then see the [compiling](compiling) chapter for a build script.
 
 You can also include the optional header file `printf`.
 To do this, copy the [`printf.h`](https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/printf.h)
 and [`sprintf.h`](https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/sprintf.h) header files to your project:
 
-```c
+```sh
 curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/printf.h" > printf.h
 curl "https://raw.githubusercontent.com/Jomy10/thunderbird/master/c-api/sprintf.h" > sprintf.h
 ```

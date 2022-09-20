@@ -39,6 +39,16 @@ pub mod console {
         pub fn print(ptr: i32, size: i32);
         pub fn printErr(ptr: i32, size: i32);
         pub fn printN(n: i32);
+        
+        // allocations
+        /// Use at own risk, in Rust these do not work like you expect them to
+        pub fn memSet(ptr: i32, val: u8, length: i32);
+        /// Use at own risk, in Rust these do not work like you expect them to
+        pub fn memSetByte(ptr: i32, byte: u8);
+        /// Use at own risk, in Rust these do not work like you expect them to
+        pub fn alloc(size: i32) -> i32;
+        /// Use at own risk, in Rust these do not work like you expect them to
+        pub fn dealloc(ptr: i32, byteSize: i32) -> i32;
     }
 }
 

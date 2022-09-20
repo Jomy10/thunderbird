@@ -34,12 +34,15 @@
 // 
 // Modified to fit the needs of the Thunderbird console
 // by Jonas Everaert (2022)
+//
+// Copied from https://github.com/mpaland/printf
 // 
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <stddef.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 // 'ntoa' conversion buffer size, this must be big enough to hold one converted
 // numeric number including padded zeros (dynamically created on stack)
@@ -498,6 +501,6 @@ int sprintf_(char* buffer, const char* format, ...)
   return ret;
 }
 
-#define sprintf sprinf_
+#define sprintf sprintf_
 
 #endif
