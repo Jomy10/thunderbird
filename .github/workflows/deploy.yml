@@ -25,8 +25,14 @@ jobs:
       - name: install dependencies
         run: cd thunderbird-emulator && pnpm install
       
+      # Install build tools
+      
       - name: install wasm32 rust target
         run: rustup target add wasm32-unknown-unknown
+      
+      - name: install wabt
+        run: git clone https://github.com/WebAssembly/wabt && mkdir build && cd build && make .. && cmake ---build .
+      
       
       - name: build emulator
         run: cd thunderbird-emulator && pnpm run build
