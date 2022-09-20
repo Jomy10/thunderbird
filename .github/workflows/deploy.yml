@@ -48,6 +48,8 @@ jobs:
       
       - name: install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh 
+
+      # Examples
       - name: build rust example
         run: sh examples/rust/space-invader/build.sh
       
