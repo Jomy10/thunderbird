@@ -10,4 +10,4 @@
   * [Making a simple game](example-game)
   
 * **Internals**
-  * TODO
+  * [Controller](internals/controller)

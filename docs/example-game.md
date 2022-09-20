@@ -225,7 +225,7 @@ make the player a little bigger than a single pixel.
 
 ## Handling input and moving the player
 
-### PLayer movement
+### Player movement
 
 <!-- tabs:start -->
 

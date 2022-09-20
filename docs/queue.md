@@ -58,7 +58,83 @@ Fill the screen with a color.
 **Byte layout**:
 - [1] color
 
-// TODO: play
+### Play0
+
+Play a note with instrument 0 (pulse).
+
+**Instruction**: `00000100` (`4`)
+
+**Byte layout**:
+
+- [1] note
+- [2] length
+
+### Play1
+
+Play a note with instrument 1 (square).
+
+**Instruction**: `00000101` (`5`)
+
+**Byte layout**:
+
+- [1] note
+- [2] length
+
+### Play2
+
+Play a note with instrument 2 (triangle).
+
+**Instruction**: `00000110` (`6`)
+
+**Byte layout**:
+
+- [1] note
+- [2] length
+
+## Note
+
+The note byte layout looks like this (used in the play instructions):
+
+```
+0b00000000
+  ---=====
+   1   2
+1. Note: A = 000, B = 001, C = 010, D = 011, E = 100, F = 101, G = 110
+2. Octave: 0 = 00000, 1 = 00001, etc.
+```
+
+## Length
+
+The length layout looks like this (usedi in the play instruction):
+
+```
+0b00000000
+  ------==
+     1   2
+1. Length: a number
+2. Measure: Seconds = 00, note = 01, triple = 10, measure = 11
+
+-------------------------------
+When using seconds as a measure:
+
+000000
+----==
+  1  2
+
+1. amount: a number
+2. floating point: a number
+The second argument determines the amount of places to shift the floating point.
+
+Examples:
+000100 = 1
+000101 = 0.1
+000110 = 0.01
+000111 = 0.001
+001000 = 2
+001111 = 0.003
+```
+
+I advise using the seconds (`00`) for a measure.
 
 ## Color
 
@@ -371,7 +447,7 @@ void __init() {
 >
 > The `printf` and `sprintf` functions will now be available like from the C standard library.
 
-> [!WARNING]
+> [!WARNING]
 > When using printf, don't forget the trailing `\n`, as this will otherwise
 > freeze execution.
 

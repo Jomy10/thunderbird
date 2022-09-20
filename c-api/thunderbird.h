@@ -126,6 +126,10 @@ void* calloc(size_t nelem, size_t elsize) {
   return ptr;
 }
 
+// Copies the character c (an unsigned char) to the first n characters of the
+// string pointed to by the argument str
+void* memset(void* ptr, int c, size_t n);
+
 void exit(int code) {
   // Digit count
   int count = 0;

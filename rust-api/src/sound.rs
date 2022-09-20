@@ -14,7 +14,7 @@ pub enum Instrument {
 }
 
 #[repr(u8)]
-pub enum NotEnum {
+pub enum NoteEnum {
     A, B, C, D, E, F, G
 }
 
@@ -39,6 +39,20 @@ pub enum NoteLengthType {
     Note = 1,
     Triplet = 2,
     Measure = 3
+}
+
+pub struct NoteLengthFloat {
+    base: u8,
+    shift: u8,
+}
+
+impl NoteLengthFloat {
+    pub fn new(base: u8, shift: u8) -> Self {
+        Self { base, shift }
+    }
+    pub fn to_u8(&self) -> u8 {
+        (self.base << 4) | (self.shift << 2)
+    }
 }
 
 pub struct NoteLength {

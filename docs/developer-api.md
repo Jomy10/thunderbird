@@ -232,7 +232,7 @@ void __init() {
 >
 > The `printf` and `sprintf` functions will now be available like from the C standard library.
 
-> [!WARNING]
+> [!WARNING]
 > When using printf, don't forget the trailing `\n`, as this will otherwise
 > freeze execution.
 
@@ -381,7 +381,94 @@ The WebAssembly does not provide any exported constants for colors. Use integers
 
 ## Playing sound
 
-// TODO
+<!-- tabs:start -->
+
+#### **Rust**
+
+```rust
+// play pulse instrument with note C4 for one second
+play(
+  Instrument::Pulse,
+  Note::new(NoteEnum::C as u8, 4),
+  NoteLength::new(1, NoteLengthType::Seconds as u8),
+);
+```
+
+```rust
+// Play square instrument with note A2 for 0.1 seconds (= 1 with floating point moved by 1 position)
+play(
+  Instrument::Square,
+  Note::new(NoteEnum::A as u8, 2),
+  NoteLength::new(NoteLengthFloat::new(1, 1).to_u8(), NoteLengthType::Seconds as u8),
+)
+```
+
+#### **C**
+
+The `play` function provides an interface to the console's sound engine.
+
+It takes 3 arguments:
+
+1. Instrument: `I_PULSE` | `I_SQUARE` | `I_TRIANGLE`.
+2. Note: e.g. C4 = `NOTE_C | 4`.
+3. Length: e.g. 1 seconds = `(1 << 4) | L_SECOND`, 0.1 seconds = `(1 << 4) | (1 << 2) | L_SECOND`.
+
+**Examples**:
+```c
+// play pulse instrument with note C4 for one second
+play(I_PULSE, NOTE_C | 4, (1 << 4) | L_SECOND);
+// play square instrument with note A2 for 0.1 seconds (= 1 with floating point moved by 1 position)
+play(I_SQUARE, NOTE_A | 2, 0b0010100);
+```
+
+### **WebAssembly**
+
+See also the [using the queue](queue) section to see how the second and third
+argument of the `play` function are layed out as bytes (note and length).
+
+```wasm
+(import "env" "play" (func $play (param i32 i32 i32)))
+
+(func (export "__init")
+  ;; play pulse instrument ...
+  i32.const 0 ;; pulse
+  
+  ;; ... with note C4 ...
+  i32.const 64 ;; C
+  i32.const 4
+  i32.or
+  
+  ;; ... for one second
+  i32.const 1
+  i32.shl
+  i32.shl
+  i32.shl
+  i32.shl ;; (1 << 4)
+  
+  call $play
+)
+```
+
+```wasm
+(import "env" "play" (func $play (param i32 i32 i32)))
+
+(func (export "__init")
+  ;; play square instrument ...
+  i32.const 1 ;; square
+  
+  ;; ... with note A2 ...
+  i32.const 0 ;; A
+  i32.const 2
+  i32.or
+  
+  ;; ... for 0.1 second
+  i32.const 20
+  
+  call $play
+)
+```
+
+<!-- tabs:end -->
 
 ## Error messages
 
