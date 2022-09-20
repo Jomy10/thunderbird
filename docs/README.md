@@ -17,3 +17,7 @@ the Thunderbird fantasy console. The documetation is divided into the following 
 - [Making a simple game](example-game)
   - Get hands on and make a simple game covering the important aspects (handling input,
     handling state, drawing to the screen and playing sound).
+
+
+- Internals
+  - Discusses the internals of the console. Navigate to the different sections in the sidebar.

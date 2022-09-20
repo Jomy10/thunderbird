@@ -160,12 +160,17 @@ In the following example we draw a rectangle to position 10, 20 with a width of
 #### **Rust**
 
 ```rust
-tb::enqueue(1).unwrap();  // draw instruction
-tb::enqueue(10).unwrap(); // x
-tb::enqueue(20).unwrap(); // y
-tb::enqueue(30).unwrap(); // w
-tb::enqueue(60).unwrap(); // h
-tb::enqueue(0b11100000).unwrap(); // Red color
+use thunderbird as tb;
+
+#[no_mangle]
+extern "C" __main() {
+  tb::enqueue(1).unwrap();  // draw instruction
+  tb::enqueue(10).unwrap(); // x
+  tb::enqueue(20).unwrap(); // y
+  tb::enqueue(30).unwrap(); // w
+  tb::enqueue(60).unwrap(); // h
+  tb::enqueue(0b11100000).unwrap(); // Red color
+}
 ```
 
 #### **C**

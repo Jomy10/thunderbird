@@ -39,7 +39,7 @@ extern "C" fn __deinit() {}
 ```
 
 Let's also add a little build script which builds our game and copies it
-to our [local development console](development-console) (you can also
+to our [local development console](developer-emulator) (you can also
 import the game file oline in the ROM library if you prefer):
 
 ```bash
@@ -72,7 +72,7 @@ void __deinit() {}
 ```
 
 Let's also add a little build script which builds our game and copies it to our
-[local development console](development-console) (you can also import the game
+[local development console](developer-emulator) (you can also import the game
 online in the ROM library if you prefer):
 
 ```bash
@@ -352,7 +352,17 @@ Now cycle through all the colors!
 
 ### Playing sounds
 
-TODO
+Let's play a sound every time the backgound changes
+
+<!-- tabs:start -->
+
+#### **Rust (API)**
+
+
+
+#### **C (API)**
+
+<!-- tabs:end -->
 
 ## Printing to the console
 
@@ -405,4 +415,4 @@ to read more.
 
 You can also take a look at the [Rust API documentation](https://docs.rs/thunderbird/0.1.0/thunderbird/).
 
-You can look at the [C header](https://github.com/jomy10/thunderbird/c-api/thunderbird.h).
+You can look at the [C header](https://github.com/jomy10/thunderbird/blob/master/c-api/thunderbird.h).

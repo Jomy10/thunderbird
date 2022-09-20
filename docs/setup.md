@@ -41,7 +41,7 @@ In **Cargo.toml**:
 crate-type = ["cdylib"]
 
 [dependencies]
-thunderbird = "0.1"
+thunderbird = "0.2"
 ```
 
 If you use the queue approach, you can leave out the `thunderbird` dependency

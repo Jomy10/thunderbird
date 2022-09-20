@@ -390,7 +390,7 @@ The WebAssembly does not provide any exported constants for colors. Use integers
 play(
   Instrument::Pulse,
   Note::new(NoteEnum::C as u8, 4),
-  NoteLength::new(1, NoteLengthType::Seconds as u8),
+  NoteLength::new(1 << 2, NoteLengthType::Seconds as u8),
 );
 ```
 
