@@ -37,6 +37,9 @@ jobs:
         # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
         run: sudo apt-get update && sudo apt-get -y install wabt
       
+      - name: install clang14
+        run: sudo apt install clang-14 --install-suggests && clang --version && clang14 --versio
+      
       
       # - name: build emulator
         # run: cd thunderbird-emulator && sh reset-env.sh && bash build-other.sh --sh bash --pass-c-example -no-llvm-path --pass-c-example --llvm --pass-c-example 14 && pnpm run build-only
@@ -47,7 +50,7 @@ jobs:
         run: sh examples/wasm/drawing-app/build.sh
       
       - name: build c example
-        run: bash examples/c/music/build.sh -no-llvm-path --clang 14
+        run: --versbash examples/c/music/build.sh -no-llvm-path --clang 14
       
       - name: build emulator
         run: cd thunderbird-emulator && sh reset-env.sh && pnpm build-only
