@@ -30,7 +30,7 @@ impl Note {
     pub fn new(note: u8, n: u8) -> Self {
         Self { note, n }
     }
-    pub fn build(&self) -> u8 {
+    fn build(&self) -> u8 {
         (self.note << 5) & self.n
     }
 }
@@ -53,7 +53,7 @@ impl NoteLengthFloat {
         Self { base, shift }
     }
     pub fn to_u8(&self) -> u8 {
-        2 >> ((self.base << 4) | (self.shift << 2))
+        ((self.base << 4) | (self.shift << 2)).checked_shl(2).expect("NoteLengthFloat.to_u8 overflowed")
     }
 }
 
@@ -68,7 +68,7 @@ impl NoteLength {
     }
     // Convert to u8 argument
     fn build(&self) -> u8 {
-        (self.amount << 2) & self.ty
+        (self.amount << 2) | self.ty
     }
 }
 
