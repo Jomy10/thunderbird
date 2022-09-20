@@ -61,7 +61,7 @@ jobs:
         run: sh examples/wasm/drawing-app/build.sh
       
       - name: build c example
-        run: bash examples/c/music/build.sh -no-llvm-path
+        run: PATH="/usr/lib/llvm-15/bin:$PATH" bash examples/c/music/build.sh -no-llvm-path
       
       - name: build emulator
         run: cd thunderbird-emulator && sh reset-env.sh && pnpm build-only
