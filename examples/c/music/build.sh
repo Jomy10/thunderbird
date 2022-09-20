@@ -19,7 +19,7 @@ do
   
     if [[ "$var" == "-no-llvm-path" ]]; then
       LLVM_PATH=false
-    elif [[ "$var" == --clang ]]; then
+    elif [[ "$var" == "--clang" ]]; then
       PREV_ARG="clang"
     fi
     

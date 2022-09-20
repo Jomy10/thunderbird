@@ -38,8 +38,19 @@ jobs:
         run: sudo apt-get update && sudo apt-get -y install wabt
       
       
+      # - name: build emulator
+        # run: cd thunderbird-emulator && sh reset-env.sh && bash build-other.sh --sh bash --pass-c-example -no-llvm-path --pass-c-example --llvm --pass-c-example 14 && pnpm run build-only
+      - name: build rust example
+        run: sh examples/rust/space-invader/build.sh
+      
+      - name: build wasm example
+        run: sh examples/wasm/drawing-app/build.sh
+      
+      - name: build c example
+        run: sh examples/c/music/build.sh -no-llvm-path --clang 14
+      
       - name: build emulator
-        run: cd thunderbird-emulator && sh reset-env.sh && bash build-other.sh --sh bash --pass-c-example -no-llvm-path --pass-c-example --llvm --pass-c-example 14 && pnpm run build-only
+        run: cd thunderbird-emulator && sh reset-env.sh
       
       - name: ls dist
         run: ls thunderbird-emulator/dist
