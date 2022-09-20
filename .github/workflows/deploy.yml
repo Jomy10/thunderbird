@@ -40,8 +40,11 @@ jobs:
         # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
         run: sudo apt-get -y install wabt
       
-      - name: install clang14
-        run: sudo apt-get -y install clang-14 && clang --version && clang14 --versio
+      # - name: install clang14
+      #   run: sudo apt-get -y install clang-13 && clang --version && clang14 --versio
+      
+      - name: install lld
+        run: sudo apt-get install lld-6.0
       
       
       # - name: build emulator
