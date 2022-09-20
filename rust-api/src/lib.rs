@@ -24,9 +24,7 @@ pub mod console {
         pub fn drawRect(x: u8, y: u8, w: u8, h: u8, c: u8) -> u8;
         
         // Sound
-        pub fn play0(note: u8, length: u8);
-        pub fn play1(note: u8, length: u8);
-        pub fn play2(note: u8, length: u8);
+       pub fn play(instrument: u8, note: u8, length: u8);
         
         pub fn getKeys() -> u8;
         

@@ -53,7 +53,7 @@ impl NoteLengthFloat {
         Self { base, shift }
     }
     pub fn to_u8(&self) -> u8 {
-        (self.base << 4) | (self.shift << 2)
+        2 >> ((self.base << 4) | (self.shift << 2))
     }
 }
 
