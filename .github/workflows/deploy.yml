@@ -30,6 +30,9 @@ jobs:
       - name: install wasm32 rust target
         run: rustup target add wasm32-unknown-unknown
       
+      - name: install lld
+        run: sys-devel/lld
+      
       - name: install wabt
         # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
         run: sudo apt-get update && sudo apt-get -y install wabt
