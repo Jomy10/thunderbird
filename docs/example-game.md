@@ -352,15 +352,34 @@ Now cycle through all the colors!
 
 ### Playing sounds
 
-Let's play a sound every time the backgound changes
+Let's play a sound every time the backgound changes.
+
+We'll play C6 using the square instrument with a length of 0.5 seconds.
 
 <!-- tabs:start -->
 
 #### **Rust (API)**
 
+Inside of the `if Keys::A.is_pressed` statement:
 
+```rust
+play(
+    Instrument::Square,
+    Note::new(NoteEnum::C as u8, 6),
+    NoteLength::new(
+        NoteLengthFloat::new(5, 1).to_u8(),
+        NoteLengthType::Seconds as u8,
+    ),
+);
+```
 
 #### **C (API)**
+
+Inside of the `if (isPressed(A))` statement:
+
+```c
+play(I_SQUARE, NOTE_C | 6, (5 << 4) | (1 << 2) | L_SECOND);
+```
 
 <!-- tabs:end -->
 
@@ -378,7 +397,8 @@ Add this to the inside of the `if Key::A.is_pressed()` statement:
 print_n(state.bg_color as i32);
 ```
 
-The `print` and `print_err` functions are also available.
+> [!NOTE]
+> The `print` and `print_err` functions are also available.
 
 #### **C (API)**
 
@@ -388,7 +408,8 @@ Add this to the inside of the `if (isPressed(A))` statement:
 printN(state->bgColor);
 ```
 
-// TODO: print and printErr exist as well and talk about printf.h
+> [!NOTE]
+> `print` adn `printEr` are also available. As well as the optional [`printf`](queue#printing-to-the-console) header.
 
 <!-- tabs:end -->
 
@@ -413,6 +434,6 @@ You can look at the full source code of this example on github
 If you haven't already, go to [using the queue](queue) or [using the developer API](developer-api)
 to read more.
 
-You can also take a look at the [Rust API documentation](https://docs.rs/thunderbird/0.1.0/thunderbird/).
+You can also take a look at the [Rust API documentation](https://docs.rs/thunderbird/latest/thunderbird/).
 
 You can look at the [C header](https://github.com/jomy10/thunderbird/blob/master/c-api/thunderbird.h).

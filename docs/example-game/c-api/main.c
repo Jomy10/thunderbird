@@ -40,6 +40,8 @@ void update(state_t* state) {
   if (isPressed(A)) {
     printN(state->bgColor);
     state->bgColor += 1;
+    
+    play(I_SQUARE, NOTE_C | 6, (5 << 4) | (1 << 2) | L_SECOND);
   }
   if (isPressed(LBUTTON)) {
     state->player.color += 1;

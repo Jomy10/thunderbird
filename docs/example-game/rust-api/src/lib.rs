@@ -77,14 +77,13 @@ fn update(state: &mut State) -> Result<(), &'static str> {
     if Keys::A.is_pressed() {
         state.bg_color = state.bg_color.checked_add(1).unwrap_or(0);
         print_n(state.bg_color as i32);
-        let len = NoteLengthFloat::new(1, 1).to_u8();
-        print_n(len.into());
+        
         play(
-            Instrument::Pulse,
-            Note::new(NoteEnum::C as u8, 4),
+            Instrument::Square,
+            Note::new(NoteEnum::C as u8, 6),
             NoteLength::new(
-                len,
-                NoteLengthType::Seconds as u8
+                NoteLengthFloat::new(5, 1).to_u8(),
+                NoteLengthType::Seconds as u8,
             ),
         );
     }

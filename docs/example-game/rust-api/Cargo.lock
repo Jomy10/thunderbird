@@ -11,6 +11,6 @@ dependencies = [
 
 [[package]]
 name = "thunderbird"
-version = "0.2.1"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5f415a55b3c486f9d7479579074015e90f5269001a8c2ed817e4b29afc966800"
+checksum = "8856397ad82272fa535c0e21d4d764edabc341804e8723b7db18a1469e41e83d"

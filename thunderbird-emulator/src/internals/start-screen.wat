@@ -8,18 +8,18 @@
   (func (export "__init")
     ;; TODO:
     ;; Draw logo to the screen
-    i32.const 1
-    call $enqueue
-    drop
-    i32.const 128
-    call $enqueue
-    drop
-    i32.const 128
-    call $enqueue
-    drop
-    i32.const 100
-    call $enqueue
-    drop
+    ;; i32.const 1
+    ;; call $enqueue
+    ;; drop
+    ;; i32.const 128
+    ;; call $enqueue
+    ;; drop
+    ;; i32.const 128
+    ;; call $enqueue
+    ;; drop
+    ;; i32.const 100
+    ;; call $enqueue
+    ;; drop
   )
   (func (export "__main")
     ;; stop the game
