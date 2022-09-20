@@ -56,7 +56,7 @@ jobs:
         run: sh examples/wasm/drawing-app/build.sh
       
       - name: build c example
-        run: --versbash examples/c/music/build.sh -no-llvm-path --clang 14
+        run: --versbash examples/c/music/build.sh -no-llvm-path
       
       - name: build emulator
         run: cd thunderbird-emulator && sh reset-env.sh && pnpm build-only
