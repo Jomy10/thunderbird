@@ -31,7 +31,8 @@ jobs:
         run: rustup target add wasm32-unknown-unknown
       
       - name: install wabt
-        run: git clone https://github.com/WebAssembly/wabt && cd wabt && ls && mkdir build && cd build && ls .. && make .. && (rm ../CMakeCache.txt || true) && (rm CMakeCache.txt || true) && cmake --build .
+        # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
+        run: sudo apt-get update && sudo apt-get -y install wabt
       
       
       - name: build emulator
