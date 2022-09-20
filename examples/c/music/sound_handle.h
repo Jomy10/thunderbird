@@ -1,7 +1,27 @@
+// An example program to test out sounds
+//
+// Controls:
+// - A: Play currently selected sound
+// - B: Switch instrument
+// - LB/RB: Change note
+// - left/right: Change duration
+// - up/down: change floating point of duration
+
 #include "../../../c-api/thunderbird.h"
 #include "../../../c-api/printf.h"
 #include "../../../c-api/sprintf.h"
 #include <stdbool.h>
+
+#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
+#define BYTE_TO_BINARY(byte)  \
+  (byte & 0x80 ? '1' : '0'), \
+  (byte & 0x40 ? '1' : '0'), \
+  (byte & 0x20 ? '1' : '0'), \
+  (byte & 0x10 ? '1' : '0'), \
+  (byte & 0x08 ? '1' : '0'), \
+  (byte & 0x04 ? '1' : '0'), \
+  (byte & 0x02 ? '1' : '0'), \
+  (byte & 0x01 ? '1' : '0') 
 
 static uint8_t INSTRUMENT = I_PULSE;
 static uint8_t NOTE = NOTE_A;
@@ -12,7 +32,7 @@ static uint8_t LENGTH_FLOAT = 0; // << 2
 static uint8_t INSTRUMENT_MAX = I_TRIANGLE;
 static uint8_t NOTE_MAX = NOTE_G;
 static uint8_t NOTE_N_MAX = 32; // 2**5
-static uint8_t LENGTH_N_MAX = 16;
+static uint8_t LENGTH_N_MAX = 0b00001111;
 static uint8_t LENGTH_FLOAT_MAX = 4;
 
 static bool A_PRESSED_BEFORE = false;
@@ -28,8 +48,9 @@ void handleSound() {
   // Play
   if (isPressed(A)) {
     if (!A_PRESSED_BEFORE) {
-      printf("Playing %s\n", "tt");
-      play(INSTRUMENT, NOTE | NOTE_N, (LENGTH_N << 4) | (LENGTH_FLOAT << 2));
+      uint8_t length = (LENGTH_N << 4) | (LENGTH_FLOAT << 2);
+      printf("Playing on instrument %i note %i %i with length "BYTE_TO_BINARY_PATTERN"\n", INSTRUMENT, NOTE, NOTE_N, BYTE_TO_BINARY(length));
+      play(INSTRUMENT, NOTE | NOTE_N, length);
       A_PRESSED_BEFORE = true;
     }
   } else {

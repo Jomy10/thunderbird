@@ -232,6 +232,12 @@ void __init() {
 >
 > The `printf` and `sprintf` functions will now be available like from the C standard library.
 
+> [!WARNING]
+> When using printf, don't forget the trailing `\n`, as this will otherwise
+> freeze execution.
+
+> [!NOTE]
+> When you don't need formatting, you can use the `prints("")` function to print a string.
 
 #### **WebAssembly**
 

@@ -2,7 +2,7 @@
 #[allow(unused)]
 // Color palette
 mod clrs {
-    use rust_api_macros::color;
+    use thunderbird_macros::color;
 
     pub const RED: u8 = color!(233 7 114);
     pub const ORANGE: u8 = color!(254 84 111);

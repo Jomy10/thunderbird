@@ -149,7 +149,7 @@
   )
 
   ;; Copies byte $val to the first n bytes of memory starting at $val
-  (func $memSet (param $ptr i32) (param $val i32) (param $byteNum i32)
+  (func $memSet (param $ptr i32) (param $val i32) (param $byteNum i32) (result i32)
     ;; do while $byteum != 0
     (loop $lp
       local.get $byteNum
@@ -176,6 +176,9 @@
         )
       ) ;; if
     ) ;; loop
+  
+    ;; return a pointer to the memory area str
+    local.get $ptr
   )
 
   (export "alloc" (func $alloc))

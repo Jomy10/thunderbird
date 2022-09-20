@@ -65,7 +65,7 @@ export default class SoundEngine {
   * @param {string} length: "x{n, t, m}"
   */
   play(instrument: number, note: string, length: string | number) {
-    console.log("playing", instrument, note, length);
+    // console.log("playing", instrument, note, length);
     let instr: Tone.PolySynth<Tone.Synth<Tone.SynthOptions>>;
     switch (instrument) {
       case 0: instr = this.instruments.pulseSynth; break;
@@ -96,10 +96,8 @@ export default class SoundEngine {
     const octave: number = _note & 0b00011111;
     const noteF: string = note + octave;
 
-    console.log(_length);
     const length: number = (_length & 0b11111100) >>> 2;
     const time: number = (_length & 0b00000011);
-    console.log(length, time);
     let lengthF: string | number;
     switch (time) {
       case 0:
@@ -107,7 +105,6 @@ export default class SoundEngine {
         const shift = (length & 0b00000011);
         const outcome = mantissa / (10**shift);
         lengthF = outcome as number;
-        console.log(mantissa, shift, outcome);
         break;
       case 1: lengthF = `${length}n`; break;
       case 2: lengthF = `${length}t`; break;
@@ -150,7 +147,6 @@ export default class SoundEngine {
   * 001111 = 0.003
   */
   __playInstrument(instrument: number, note: number, length: number) {
-    console.log("__playInstrument", instrument, note, length);
     this.queue.enqueue(4 + instrument);
     this.queue.enqueue(note);
     this.queue.enqueue(length);

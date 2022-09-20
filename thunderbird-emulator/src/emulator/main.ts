@@ -164,7 +164,7 @@ export default class Emulator {
           alloc: this.allocator.alloc,
           dealloc: this.allocator.dealloc,
           setTo0: this.allocator.setTo0,
-          memSet: this.allocator.memSet,
+          memset: this.allocator.memSet,
           memSetByte: this.allocator.memSetByte,
           getKeys: this.getKeys.bind(this),
           getTimestamp: function(): number { return Date.now(); },

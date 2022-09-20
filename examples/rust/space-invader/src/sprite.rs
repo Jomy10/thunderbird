@@ -1,5 +1,5 @@
 use crate::colors::*;
-use rust_api::*;
+use thunderbird::*;
 
 pub enum Sprite {
     Player,

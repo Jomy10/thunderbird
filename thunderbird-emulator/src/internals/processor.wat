@@ -160,7 +160,8 @@
                     )
                 )
                 
-                i32.const -1
+                ;; error code 500: wrong instruction
+                i32.const -500
                 call $logN
                 
                 local.get $instruction

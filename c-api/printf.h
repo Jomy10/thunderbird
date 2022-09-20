@@ -21,6 +21,7 @@ static inline int __thunderbird_sum(int argCount, ...) {
   return sum;
 }
 
+// Print formatted
 #define printf(format, ...) { \
 int bufferSize = _strnlen_s(format, 1000) + __thunderbird_sum(__TB_NARG(__VA_ARGS__) , __VA_ARGS__); \
 char* str = (char*) alloc(bufferSize); \
@@ -28,6 +29,14 @@ sprintf(str, format, __VA_ARGS__); \
 int str_size = _strnlen_s(str, 1000); \
 print(str, str_size); \
 dealloc(str, bufferSize); \
+}
+
+// Print string
+#define prints(_str) { \
+int strSize = _strnlen_s(_str, 1000); \
+char* str = (char*) alloc(strSize); \
+print(str, strSize); \
+dealloc(str, strSize); \
 }
 
 #endif

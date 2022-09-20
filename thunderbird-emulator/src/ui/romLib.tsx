@@ -40,6 +40,8 @@ const RomLib: Component<{includeContainer?: boolean}> = (props) => {
       <DefaultRom file="space_invader.wasm" name="Space Invaders"/>
       <Divider/>
       <DefaultRom file="drawing_app.wasm" name="Drawing Pro 3000"/>
+      <Divider/>
+      <DefaultRom file="sound_game.wasm" name="Sound Experimenter 50000"/>
       <For each={userRoms()}>{(rom, _i) => <>
         <Divider/>
         <UserRom key={rom}/>
@@ -47,7 +49,6 @@ const RomLib: Component<{includeContainer?: boolean}> = (props) => {
     </VStack>
   </>;
 
-  // TODO: set vstack height to height of canvas
   return (
     <Switch fallback={content}>
       <Match when={includeContainer}>

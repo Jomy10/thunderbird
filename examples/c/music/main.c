@@ -9,8 +9,6 @@ void __init() {
 
 void __main() {
   handleSound();
-  bool b = true;
-  printN((int) b);
 }
 
 void __deinit() {}

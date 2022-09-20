@@ -42,7 +42,7 @@ pub mod console {
         
         // allocations
         /// Use at own risk, in Rust these do not work like you expect them to
-        pub fn memSet(ptr: i32, val: u8, length: i32);
+        pub fn memset(ptr: i32, val: u8, length: i32) -> i32;
         /// Use at own risk, in Rust these do not work like you expect them to
         pub fn memSetByte(ptr: i32, byte: u8);
         /// Use at own risk, in Rust these do not work like you expect them to

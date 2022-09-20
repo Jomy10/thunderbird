@@ -6,9 +6,8 @@ use state::State;
 mod colors;
 mod sprite;
 
-use rust_api::{panic, get_timestamp};
+use thunderbird::{panic, get_timestamp};
 use quad_rand as rand;
-
 
 #[no_mangle]
 unsafe extern "C" fn __init() {

@@ -7,6 +7,6 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-rust-api = { path = "../../../rust-api" }
-rust-api-macros = { path = "../../../rust-api-macros" }
+thunderbird = { path = "../../../rust-api" }
+thunderbird-macros = { path = "../../../rust-api-macros" }
 quad-rand = "0.2.1"

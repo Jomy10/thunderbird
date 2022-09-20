@@ -1,5 +1,8 @@
+set -e
+cd "$(dirname "$0")"
+
 SOURCE_FILE="main.c"
-OUT_FILE="../../../thunderbird-emulator/game/game.wasm"
+OUT_FILE="../../../thunderbird-emulator/public/wasm/sound_game.wasm"
 
 LLVM_PATH=true
 
