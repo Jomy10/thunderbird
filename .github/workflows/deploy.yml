@@ -36,18 +36,18 @@ jobs:
       - name: install llvm
         run: sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
       
-      - name: install wabt
-        # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
-        run: sudo apt-get -y install wabt
-      
       # - name: install clang14
       #   run: sudo apt-get -y install clang-13 && clang --version && clang14 --versio
       
       - name: install lld
-        run: sudo apt-get install lld-6.0
+        run: sudo apt-get install lld-10
+
+      - name: install wabt
+        # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
+        run: sudo apt-get -y install wabt
       
       
-      # - name: build emulator
+        # - name: build emulator
         # run: cd thunderbird-emulator && sh reset-env.sh && bash build-other.sh --sh bash --pass-c-example -no-llvm-path --pass-c-example --llvm --pass-c-example 14 && pnpm run build-only
       - name: build rust example
         run: sh examples/rust/space-invader/build.sh
