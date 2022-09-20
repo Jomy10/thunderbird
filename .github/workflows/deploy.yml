@@ -26,4 +26,4 @@ jobs:
         run: cd thunderbird-emulator && pnpm install
       
       - name: build emulator
-        run: ls && pnpm run build
+        run: cd thunderbird-emulator && pnpm run build
