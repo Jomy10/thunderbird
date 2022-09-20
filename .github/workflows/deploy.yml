@@ -44,19 +44,10 @@ jobs:
 
       - name: install wabt
         # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
-        run: sudo apt install wabt
+        run: sudo apt-get -y install wabt
       
       - name: install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh 
-      
-      # - name: append path
-      #   run: export PATH="/usr/lib/llvm-15/bin:$PATH"
-      
-      # - name: ls llvm
-      #   run: ls /usr/lib && ls /usr/lib/llvm-15 && ls /usr/lib/llvm-15/bin
-      
-        # - name: build emulator
-        # run: cd thunderbird-emulator && sh reset-env.sh && bash build-other.sh --sh bash --pass-c-example -no-llvm-path --pass-c-example --llvm --pass-c-example 14 && pnpm run build-only
       - name: build rust example
         run: sh examples/rust/space-invader/build.sh
       
@@ -66,14 +57,11 @@ jobs:
       - name: build c example
         run: PATH="/usr/lib/llvm-15/bin:$PATH" bash examples/c/music/build.sh -no-llvm-path
       
-      - name: help wat2wasm
-        run: wat2wasm --help
-      
       - name: build sprite converter
         run: cd sprite-converter && bash build.sh
       
       - name: build wasm internals
-        run: cd thunderbird-emulator && node build-wasm.js
+        run: cd thunderbird-emulator && bash build-wasm-sh-version.sh
       
       - name: build emulator
         run: cd thunderbird-emulator && sh reset-env.sh && pnpm build-only
