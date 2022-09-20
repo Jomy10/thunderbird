@@ -1,7 +1,7 @@
 name: Emuator Deployment
 on: [push]
 jobs:
-  Build:
+  Publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -69,8 +69,15 @@ jobs:
       - name: ls dist
         run: ls thunderbird-emulator/dist
   
-  ls:
-    runs-on: ubuntu-latest
-    steps:
-      - name: ls dist
-        run: ls thunderbird-emulator/dist
+      # Publish to Netlify #
+      
+      # Install cLI
+      
+      - name: install Netlify CLI
+        run: pnpm add -g netlify-cli
+      
+      # Delpoy
+      - name: deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: netlify deploy --auth $NETLIFY_AUTH_TOKEN --site thunderbird-emulator --prod --dir thunderbird-emulator/dist
