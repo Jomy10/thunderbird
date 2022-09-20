@@ -1,6 +1,6 @@
 # Thunderbird Arcade System Emulator
 
-![TES](../assets/console.png)
+![Console](../assets/console.png)
 
 ## Running locally
 
@@ -26,3 +26,11 @@ The app is built to the `dist` folder.
 ## Deploying
 
 The `dist` folder can be deployed to static host providers (Netlify, Github Pages, ...).
+
+## Local developer console
+
+`(p)npm run game-dev`
+
+## More information
+
+on the [developer docs](https://docs.thunderbird.jomy.dev).

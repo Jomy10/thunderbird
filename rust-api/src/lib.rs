@@ -22,22 +22,22 @@ pub mod console {
         pub fn fill(c: u8) -> u8;
         /// Returns 0 if the enqueuing of this instrution was successful, 1 otherwise
         pub fn drawRect(x: u8, y: u8, w: u8, h: u8, c: u8) -> u8;
-        
+
         // Sound
        pub fn play(instrument: u8, note: u8, length: u8);
-        
+
         pub fn getKeys() -> u8;
-        
+
         pub fn getTimestamp() -> i32;
-        
+
         // queue
         pub fn enqueue(val: u8) -> u8;
-        
+
         // console
         pub fn print(ptr: i32, size: i32);
         pub fn printErr(ptr: i32, size: i32);
         pub fn printN(n: i32);
-        
+
         // allocations
         /// Use at own risk, in Rust these do not work like you expect them to
         pub fn memset(ptr: i32, val: u8, length: i32) -> i32;
@@ -50,6 +50,7 @@ pub mod console {
     }
 }
 
+#[inline]
 /// Get a seed for a random number generator frrom the system
 pub fn get_timestamp() -> i32 {
     unsafe { return console::getTimestamp(); }

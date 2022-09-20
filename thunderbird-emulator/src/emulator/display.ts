@@ -18,12 +18,14 @@ type Rgb8bitColor = {
   b: number;
 };
 
+/** Imported from wasm (internals/display.wat). These functions enqueue the instructions */
 export type DisplayFunctions = {
   __draw: (x: number, y: number, c: number) => number;
   __drawRect: (x: number, y: number, w: number, h: number, c: number) => number;
   __fill: (c: number) => number;
 };
 
+/** The console's display unit */
 export default class Display {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
@@ -40,62 +42,7 @@ export default class Display {
     this.ctx = ctx as CanvasRenderingContext2D;
     this.queue = queue;
     this.displayFunctions = df;
-    // this.displayFunctions = {
-    //   __draw: this.__draw.bind(this),
-    //   __drawRect: this.__drawRect.bind(this),
-    //   __fill: this.__fill.bind(this)
-    // }
   }
-
-  __draw(x, y, c): number {
-    if (this.queue.enqueue(1) == 1) {
-      console.log("Failed to enqueue draw");
-    }
-    if (this.queue.enqueue(x) == 1) {
-      console.log("Failed to enqueue draw", x, y, c);
-    }
-    if (this.queue.enqueue(y) == 1) {
-      console.log("Failed to enqueue draw", x, y, c);
-    }
-    if (this.queue.enqueue(c) == 1) {
-      console.log("Failed to enqueue draw", x, y, c);
-    }
-    return 0;
-  }
-  
-  __drawRect(x, y, w, h, c): number {
-    if (this.queue.enqueue(2) == 1) {
-      console.log("Failed to enqueue drawRect", x, y, w, h, c);
-    }
-    if (this.queue.enqueue(x) == 1) {
-      console.log("Failed to enqueue drawRect", x, y, w, h, c);
-    }
-    if (this.queue.enqueue(y) == 1) {
-      console.log("Failed to enqueue drawRect", x, y, w, h, c);
-    }
-    if (this.queue.enqueue(w) == 1) {
-      console.log("Failed to enqueue drawRect", x, y, w, h, c);
-    }
-    if (this.queue.enqueue(h) == 1) {
-      console.log("Failed to enqueue drawRect", x, y, w, h, c);
-    }
-    if (this.queue.enqueue(c) == 1) {
-      console.log("Failed to enqueue drawRect", x, y, w, h, c);
-    }
-    return 0;
-  }
-
-  __fill(c): number {
-    if (this.queue.enqueue(3) == 1) {
-      console.log("Failed to enqueue fill", c, "- queue count:", this.queue.getQueueCount());
-    }
-    if (this.queue.enqueue(c) == 1) {
-      console.log("Failed to enqueue fill", c, "- queue count:", this.queue.getQueueCount());
-    }
-
-    return 0;
-  }
-  
 
   // Convert an 8bit color to rgb values
   // 0b00000000
@@ -125,7 +72,7 @@ export default class Display {
     return { r: r, g: g, b: b };
   }
 
-  // Draw instructions //
+  // Draw instructions: called by the processor //
   fill(color: number) {
     this.ctx.beginPath();
     this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);

@@ -5,6 +5,7 @@ export type Cartridge = {
   __deinit: () => void;
 }
 
+/** Reads and stores cartridges */
 export default class CartridgeReader {
   cartridge: Cartridge | undefined;
   init: () => void;

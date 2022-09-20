@@ -92,18 +92,18 @@ int isPressed(uint8_t key) {
 
 // The malloc() function shall allocate unused space for an object whose size in
 // bytes is specified by size and whose value is unspecified.
-// 
+//
 // https://pubs.opengroup.org/onlinepubs/9699919799/functions/malloc.html
 void* malloc(size_t size) {
   size_t totalSize = size + sizeof(size_t);
   size_t* ptr = (size_t*) alloc(totalSize);
   *ptr = totalSize;
-  
+
   return (void*) (ptr + sizeof(size_t));
 }
 
 // Free an allocated pointer.
-// 
+//
 // https://pubs.opengroup.org/onlinepubs/9699919799/functions/free.html
 void free(void* ptr) {
   size_t* ptr_cast = (size_t*) ptr;
@@ -116,13 +116,13 @@ void free(void* ptr) {
 // The calloc() function shall allocate unused space for an array of nelem
 // elements each of whose size in bytes is elsize. The space shall be
 // initialized to all bits 0.
-// 
+//
 // https://pubs.opengroup.org/onlinepubs/9699919799/functions/calloc.html
 void* calloc(size_t nelem, size_t elsize) {
   size_t totalSize = nelem * elsize;
   void* ptr = malloc(totalSize);
   setTo0(ptr, totalSize);
-  
+
   return ptr;
 }
 
@@ -130,6 +130,7 @@ void* calloc(size_t nelem, size_t elsize) {
 // string pointed to by the argument str
 void* memset(void* ptr, int c, size_t n);
 
+// Exit the program with the exit code
 void exit(int code) {
   // Digit count
   int count = 0;
@@ -157,10 +158,10 @@ void exit(int code) {
   for (int i = 0; i < count; i++) {
     *(str + i + 22) = digits[i];
   }
-  
+
   print(str, 22 + count);
   free(str);
-  
+
   if (!enqueue(0)) {
     while(__dequeue_result()) {} // empty queue
     enqueue(0);

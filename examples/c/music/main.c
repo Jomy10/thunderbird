@@ -1,3 +1,12 @@
+// An example program to test out sounds
+//
+// Controls:
+// - A: Play currently selected sound
+// - B: Switch instrument
+// - LB/RB: Change note
+// - left/right: Change duration
+// - up/down: change floating point of duration
+
 #include "../../../c-api/thunderbird.h"
 #include "sound_handle.h"
 

@@ -1,3 +1,4 @@
+/** The console which can be printe to */
 export default class Console {
   memArr: Uint8Array;
   decoder: TextDecoder;
@@ -13,7 +14,7 @@ export default class Console {
     const slice = this.memArr.slice(memStart, memStart + length);
     console.log(String.fromCharCode(... slice));
   }
-  
+
   logErr(memStart: number, length: number) {
     const slice = this.memArr.slice(memStart, memStart + length);
     console.error(String.fromCharCode(...slice));

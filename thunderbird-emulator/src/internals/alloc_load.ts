@@ -8,6 +8,7 @@ export type Allocator = {
   memSet: (ptr: number, val: number, length: number) => void;
 };
 
+/** load the wasm memory allocator */
 export default async function loadAlloc(
   mem: WebAssembly.Memory,
   memStart: number = Math.pow(2,16), memSize: number = 3*(Math.pow(2,16)),

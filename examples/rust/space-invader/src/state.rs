@@ -1,7 +1,6 @@
 use thunderbird::*;
 use crate::sprite::Sprite;
 use crate::colors;
-// use nanorand::{RNG, WyRand};
 use quad_rand as rand;
 
 #[derive(Default)]
@@ -22,7 +21,7 @@ impl State {
         state.game_state = GameState::Playing;
         return state;
     }
-    
+
     pub fn update(&mut self) {
         match self.game_state {
             GameState::Playing => {
@@ -30,7 +29,7 @@ impl State {
                 if shoot {
                     self.new_bullet();
                 }
-                
+
                 // Spawn enemy bullets
                 let will_shoot = rand::gen_range(0,20);
                 if will_shoot == 1 && self.enemies.len() != 0 {
@@ -46,7 +45,7 @@ impl State {
                         });
                     }
                 }
-                
+
                 // Move bullets
                 self.bullets.retain_mut(|bullet| {
                     !bullet.r#move()
@@ -54,10 +53,10 @@ impl State {
                 self.enemy_bullets.retain_mut(|bullet| {
                     !bullet.r#move()
                 });
-        
+
                 // Move enemies
                 self.enemies.iter_mut().for_each(|enemy_row| { enemy_row.r#move(); });
-                
+
                 // Collision detection
                 self.bullets.retain(|bullet| {
                     let mut rm = false;
@@ -77,7 +76,7 @@ impl State {
                     return !collides;
                 });
                 self.player.lives = self.player.lives.checked_sub(player_hits).unwrap_or(0);
-                
+
                 // Check win/fail condition
                 if self.player.lives == 0 { self.game_state = GameState::GameOver; return; }
                 let mut won = true;
@@ -91,7 +90,7 @@ impl State {
                                 self.game_state = GameState::GameOver;
                             }
                         }
-                    } 
+                    }
                 }
                 if won { self.game_state = GameState::Won };
             }, GameState::GameOver | GameState::Won => {}
@@ -107,10 +106,10 @@ impl State {
                 self.enemy_bullets.iter().for_each(|bullet| { bullet.draw(); });
                 self.player.draw();
                 self.enemies.iter().for_each(|enemy_row| {
-                    enemy_row.enemies.iter().for_each(|enemy| { enemy.draw(); }) 
+                    enemy_row.enemies.iter().for_each(|enemy| { enemy.draw(); })
                 });
             }, GameState::GameOver => {
-                
+
             }, GameState::Won => {}
         }
     }
@@ -181,7 +180,7 @@ impl EnemyRow {
             dir: Direction::Right
         };
     }
-    
+
     pub fn r#move(&mut self) {
         match self.dir {
             Direction::Left => {
@@ -221,9 +220,8 @@ impl Enemy {
     pub fn new(x: u8, y: u8) -> Self {
         Enemy { pos: Vec2 { x, y }, width: 16}
     }
-    
+
     pub fn draw(&self) {
-        // draw_rect(self.pos.x, self.pos.y, self.width, self.width, colors::RED).unwrap();
         Sprite::Enemy.render(self.pos.x, self.pos.y);
     }
     pub fn collides(&self, opos: Vec2, osize: Vec2) -> bool {
@@ -291,7 +289,7 @@ struct Player {
 
 impl Default for Player {
     fn default() -> Self {
-        Self { 
+        Self {
             pos: Vec2 { x: (256 / 2) as u8 - 5, y: (256 - 20) as u8 - 5 },
             speed: 3,
             player_width: 16,
@@ -312,7 +310,7 @@ impl Player {
             self.pos.x = self.pos.x.checked_add(self.speed).unwrap_or(255);
             if self.pos.x.checked_add(self.player_width).unwrap_or(255) >= 255 { self.pos.x = 255 - self.player_width }
         }
-        let shoot = if self.cooldown == 0 { 
+        let shoot = if self.cooldown == 0 {
             return if Keys::A.is_pressed() {
                 self.cooldown += 1;
                 true
@@ -322,7 +320,7 @@ impl Player {
             if self.cooldown == 10 { self.cooldown = 0; }
             false
         };
-        
+
         return shoot;
     }
     #[inline]

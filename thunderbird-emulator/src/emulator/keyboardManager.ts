@@ -6,7 +6,9 @@ type KeyLayout = {
 };
 
 export default class KeyboardManager {
+  /** unused: unfinished feature */
   player2Registered: Boolean;
+  /** The keyboard layout as selected by the player */
   keys: KeyLayout;
   eventListener: (event: KeyboardEvent) => void;
   

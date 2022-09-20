@@ -3,6 +3,7 @@
 import Emulator from './main';
 import envStr from '/game/env.txt?raw';
 
+/** Loads the emulator when the webpage is loaded */
 class EmulatorLoader {
   emulator: Emulator | undefined
 
@@ -12,8 +13,10 @@ class EmulatorLoader {
 
   async load(canvas: HTMLCanvasElement) {
     this.emulator = await Emulator.init(canvas);
+    // set the screen to white
     this.emulator.display.fill(0b11111111);
-    
+
+    // determine environment (pn run game-dev = dev)
     switch (envStr.toLowerCase().trim()) {
       case 'prod':
         break;

@@ -9,7 +9,6 @@ import type { Allocator } from "../internals/alloc_load";
 import loadAlloc from '../internals/alloc_load';
 
 import fetchWasm from '../util/fetchWasm';
-// import registerKeyboardEvents from './keyboardInput';
 
 export type Queue = {
   init: () => void;
@@ -19,13 +18,12 @@ export type Queue = {
   availableSize: () => number;
 };
 
-/** Holds all componts of the emulator */
+/** Holds all components of the emulator */
 export default class Emulator {
   display: Display;
   soundEngine: SoundEngine;
   cartridgeReader: CartridgeReader;
   processor: Processor;
-  // internals: Internals;
   game_memory: WebAssembly.Memory;
   __memArr: Uint8Array;
   queue: Queue;
@@ -84,9 +82,6 @@ export default class Emulator {
     let queue = await fetchWasm('/wasm/queue.wasm', {
       env: {
         memory: queue_memory,
-        // memSize: 65534,
-        // memStart: 1, // address 0 is keyboard input
-        // memEnd: 65534 + 1,
         logN: _console.logN.bind(_console),
       }
     }) as Queue;
@@ -118,7 +113,8 @@ export default class Emulator {
           play0: soundEngine.__playLinkFunction0.bind(soundEngine),
           play1: soundEngine.__playLinkFunction1.bind(soundEngine),
           play2: soundEngine.__playLinkFunction2.bind(soundEngine),
-        }, console: {
+        },
+        console: {
           log: _console.log.bind(_console),
           logN: _console.logN.bind(_console)
         }
@@ -143,15 +139,16 @@ export default class Emulator {
     );
   }
 
+  /** gets the first byte in game memory */
   getKeys(): number {
     return this.__memArr[0];
   }
 
   /** Loads a rom from bytes into the cartridge reader */
   async loadRom(bytes: Uint8Array) {
-    // Quit the currently running game
-    
+    // Load rom function
     let fn = async () => {
+      // Set screen to white
       this.queue.enqueue(3);
       this.queue.enqueue(255);
       await this.cartridgeReader.__loadRom(bytes, {
@@ -182,17 +179,18 @@ export default class Emulator {
       this.processor.onExit = () => {};
     }; // fn
 
-    // let watcher = createWatcher(this.processor);
     if (this.processor.isRunning) {
       this.processor.onExit = () => {
         (async () => { fn() } )();
       };
+      // Quit the currently running game
       this.queue.enqueue(0);
     } else {
       await fn();
     }
   }
-  
+
+  /** internal dequeue function */
   __dequeue_result(): number {
     let [res, _val] = this.queue.dequeue();
     return res;

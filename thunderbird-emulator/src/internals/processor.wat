@@ -56,8 +56,6 @@
                     )
                 )
 
-                ;; todo: binary operators to compare => know that an instruction is a variant of a function (different amount of parameters)
-
                 ;; draw x y color
                 i32.const 1
                 local.get $instruction
@@ -159,22 +157,15 @@
                         br $execInstruction ;; stop looking for matchin instruction
                     )
                 )
-                
+
                 ;; error code 500: wrong instruction
                 i32.const -500
                 call $logN
-                
+
                 local.get $instruction
                 call $logN
-
-                ;; br $execInstruction
-                ;; local.get $instruction
-                ;; call $logN
-                ;; unreachable
-
-                ;; TODO: figure out why this place is reached (should be unreachable)
             ) ;; end instruction block
-
+            
             ;; loop again
             br $execQueue
         ) ;; end loop

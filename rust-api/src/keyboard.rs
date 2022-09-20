@@ -10,6 +10,7 @@ pub fn get_keys() -> u8 {
 }
 
 /// All key codes as constants
+#[deprecated]
 pub mod keys {
     pub const UP: u8 = 0b10000000;
     pub const DOWN: u8 = 0b01000000;

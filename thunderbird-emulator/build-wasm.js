@@ -1,4 +1,5 @@
 // Builds the internals from wat to wasm
+
 const exec = require('child_process').exec;
 const fs = require('fs').promises;
 const path = require('path');
@@ -30,19 +31,4 @@ function wat2wasm(file, outFile) {
   });
 }
 
-// export default function wasmBuildPlugin() {
-//   // wat2wasm("src/internals/queue.wat", "");
-//   compileWasm();
-//
-//   return {
-//     name: 'wasm build',
-//     handleHotUpdate({ server }) {
-//       // Executes on reload
-//       console.log("hot update");
-//       compileWasm();
-//     }
-//   }
-// }
-
-// TODO: remove when plugin is working
 compileWasm();

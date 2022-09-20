@@ -10,8 +10,6 @@
 SOURCE_FILE="main.c"
 OUT_FILE="../../../thunderbird-emulator/game/game.wasm"
 
-ENV=''
-
 # Build command
 # I use this environment variable on my computer
 PATH="/usr/local/opt/llvm/bin:$PATH" \

@@ -1,3 +1,6 @@
+;; Store the available addresses of memory that have been previously allocated
+;; and are now deallocated
+
 (module
   ;; one block of memory to store the addresses
   (memory $mem 1 1)

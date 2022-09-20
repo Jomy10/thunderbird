@@ -7,6 +7,7 @@ import * as localForage from 'localforage';
 
 import emLoader from '../emulator/loader';
 
+/** A single rom in the Rom library */
 const Rom: Component<{loadRom: () => void, name: string, romImageLink?: string}> = (props) => {
   return (
     <a onclick={props.loadRom}>
@@ -30,7 +31,7 @@ export const DefaultRom: Component<{file: string, name: string, img?: string}> =
     }
     req.send(null);
   }
-  
+
   return <Rom loadRom={loadRom} name={props.name} romImageLink={props.img} />
 }
 

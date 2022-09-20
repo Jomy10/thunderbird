@@ -22,7 +22,7 @@ fn str_to_wasm_ptr(str: &str) -> (i32, i32) {
     }
 }
 
-/// Print to the stanndard out
+/// Print to the standard out
 pub fn print(str: &str) {
     unsafe {
         let (ptr, len) = str_to_wasm_ptr(str);
@@ -31,6 +31,7 @@ pub fn print(str: &str) {
     };
 }
 
+/// Print a message that is formatted as an error
 pub fn print_err(str: &str) {
     unsafe {
         let (ptr, len) = str_to_wasm_ptr(str);

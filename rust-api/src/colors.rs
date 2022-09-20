@@ -4,6 +4,7 @@ pub trait ColorUtils {
 
 pub type Color = u8;
 impl ColorUtils for Color {
+    /// Convert an rgb value to an 8bit color
     fn from(r: u8, g: u8, b: u8) -> Self {
         let b = ((b as f32 / 256.0) * 4.0) as u8;
         let g = ((g as f32 / 256.0) * 8.0) as u8;
@@ -16,6 +17,7 @@ impl ColorUtils for Color {
     }
 }
 
+/// An enum containing some common colors. Does not contain all possible values!
 #[repr(u8)]
 pub enum Colors {
     /// Pure red

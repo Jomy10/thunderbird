@@ -6,5 +6,7 @@ node_modules
 /coverage
 .ignore
 /game
+/public/wasm
+/src/sprite_converter
 
 .beaver

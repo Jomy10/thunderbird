@@ -3,14 +3,8 @@
 
     (import "env" "memory" (memory $mem 1 1))
 
-    ;; Total size of the queue in memory
-    ;; (import "env" "memSize" (global $memSize i32))
-    ;; The place in memory where the first element of the queue is located
-    ;; (import "env" "memStart" (global $memStart i32))
-    ;; (import "env" "memEnd" (global $memEnd i32))
-
     (import "env" "logN" (func $logN (param i32)))
-    
+
     (global $memSize i32 (i32.const 65536))
     (global $memStart i32 (i32.const 0))
     (global $memEnd i32 (i32.const 65536))
@@ -25,15 +19,8 @@
 
     ;; Initializes global values
     (func $init
-        ;; global.get $memStart
-        ;; global.get $memSize
-        ;; i32.add
-        ;; global.set $memEnd
-
-        ;; global.get $memStart
-        ;; global.get $memStart
-        ;; global.set $tail
-        ;; global.set $head
+        ;; deprecated
+        nop
     )
 
     ;; append an item to the queue
@@ -180,9 +167,6 @@
 
     ;; returns the amount of bytes left on the queue to write to
     (func $availableSize (result i32)
-        ;; global.get $memEnd
-        ;; global.get $memStart
-        ;; i32.sub
         global.get $memSize
         global.get $queueCount
         i32.sub
@@ -192,6 +176,7 @@
         global.get $queueCount
     )
 
+    ;; exports
     (export "init" (func $init))
     (export "enqueue" (func $enqueue))
     (export "dequeue" (func $dequeue))

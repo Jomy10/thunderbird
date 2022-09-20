@@ -4,6 +4,7 @@ mod imports {
     }
 }
 
+#[inline]
 /// Enqueue a byte to the queue
 pub fn enqueue(val: u8) -> Result<(), &'static str> {
     if unsafe { imports::enqueue(val) } == 0 {
