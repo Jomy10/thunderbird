@@ -23,9 +23,7 @@ jobs:
             - args: [--global, gulp, typescript]
       
       - name: install dependencies
-        run: cd thunderbird-emulator
-        run: pnpm install
+        run: cd thunderbird-emulator && pnpm install
       
       - name: build emulator
-        run: ls
-        run: pnpm run build
+        run: ls && pnpm run build
