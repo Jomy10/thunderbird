@@ -55,13 +55,8 @@ jobs:
       - name: build wasm example
         run: sh examples/wasm/drawing-app/build.sh
       
-      - name: test
-        run: sudo apt install bat
-      - name: test stmt
-        run: bat /home/runner/work/_temp
-
       - name: build c example
-        run: --versbash examples/c/music/build.sh -no-llvm-path
+        run: bash examples/c/music/build.sh -no-llvm-path
       
       - name: build emulator
         run: cd thunderbird-emulator && sh reset-env.sh && pnpm build-only
