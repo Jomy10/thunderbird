@@ -6,4 +6,4 @@
 
 [GitHub](https://github.com/jomy10/thunderbird/)
 [To the emulator](https://thunderbird.jomy.dev)
-[Get Started](summary)
+[To the docs](summary)

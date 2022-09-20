@@ -12,8 +12,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^29.0.0",
-    "jest": "^29.0.1",
+    "@types/jest": "^28.0.0",
+    "jest": "^28.0.0",
     "terser": "^5.15.0",
     "ts-jest": "^28.0.8",
     "typescript": "^4.8.2",
@@ -27,7 +27,7 @@
     "nes.css": "^2.3.0",
     "solid": "link:@hope-ui/solid",
     "solid-js": "^1.5.1",
-    "solid-transition-group": "^0.0.11",
+    "solid-transition-group": "^0.0.10",
     "tone": "^14.7.77"
   }
 }
