@@ -27,6 +27,9 @@ jobs:
       
       # Install build tools
       
+      - name: apt-get update
+        run: sudo apt-get update
+      
       - name: install wasm32 rust target
         run: rustup target add wasm32-unknown-unknown
       
@@ -35,10 +38,10 @@ jobs:
       
       - name: install wabt
         # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
-        run: sudo apt-get update && sudo apt-get -y install wabt
+        run: sudo apt-get -y install wabt
       
       - name: install clang14
-        run: sudo apt install clang-14 --install-suggests && clang --version && clang14 --versio
+        run: sudo apt-get -y install clang-14 && clang --version && clang14 --versio
       
       
       # - name: build emulator
