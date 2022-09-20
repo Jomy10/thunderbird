@@ -46,11 +46,14 @@ jobs:
         # run: git clone https://github.com/WebAssembly/wabt && cd wabt && mkdir build && cd build && make .. && cmake --build .
         run: sudo apt-get -y install wabt
       
-      - name: append path
-        run: export PATH="/usr/lib/llvm-15/bin:$PATH"
+      - name: install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh 
       
-      - name: ls llvm
-        run: ls /usr/lib && ls /usr/lib/llvm-15 && ls /usr/lib/llvm-15/bin
+      # - name: append path
+      #   run: export PATH="/usr/lib/llvm-15/bin:$PATH"
+      
+      # - name: ls llvm
+      #   run: ls /usr/lib && ls /usr/lib/llvm-15 && ls /usr/lib/llvm-15/bin
       
         # - name: build emulator
         # run: cd thunderbird-emulator && sh reset-env.sh && bash build-other.sh --sh bash --pass-c-example -no-llvm-path --pass-c-example --llvm --pass-c-example 14 && pnpm run build-only
