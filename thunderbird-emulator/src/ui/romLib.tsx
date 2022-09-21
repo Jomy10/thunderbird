@@ -10,7 +10,6 @@ import emLoader from '../emulator/loader';
 
 const RomLib: Component<{includeContainer?: boolean}> = (props) => {
   const includeContainer = props.includeContainer ?? true;
-  console.log("ic", includeContainer, props.includeContainer);
   async function handleFileInput() {
     let uploader = document.getElementById("rom-upload")! as HTMLInputElement;
     

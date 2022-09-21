@@ -28,7 +28,6 @@ type SpriteConverter = {
 async function fetchSpriteConverter(): Promise<SpriteConverter> {
   let mod = await init();
   mod.init_panic();
-  console.log("module loaded", mod);
   // @ts-ignore // typescript is wrong
   return mod as SpriteConverter;
 }

@@ -11,7 +11,7 @@ const Settings: Component<{isOpen: Boolean, onClose: () => void}> = (props) => {
   const { isOpen, onOpen, onClose } = createDisclosure();
 
   createEffect(() => {
-    if (props.isOpen) { console.log("Opened drawer"); onOpen(); }
+    if (props.isOpen) { onOpen(); }
   });
   
   async function clearRoms() {

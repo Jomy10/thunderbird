@@ -45,7 +45,6 @@ export const UserRom: Component<{key: string}> = (props) => {
 }
 
 export const UserRoms: Component<{keys: string[]}> = (props) => {
-  console.log("keys", props.keys);
   return <For each={props.keys}>{(rom, _i) => <>
     <Divider/>
     <UserRom key={rom}/>

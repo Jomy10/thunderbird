@@ -38,26 +38,6 @@ test("alloc", () => {
 });
 
 test("alloc full + dealloc all + alloc full", async () => {
-  // let test = await fetchWasm("tests/internals/testDealloc.wasm", {
-  //   env: {
-  //     memory: mem,
-  //     alloc: mod.alloc,
-  //     dealloc: mod.dealloc,
-  //     resultN: function(n) {
-  //       console.log("Result is", n);
-  //       let file = fs.createWriteStream('test.txt');
-  //       new Uint8Array(mem.buffer).forEach(function(v) {
-  //         file.write(v + '\n');
-  //       });
-  //       file.end(); 
-  //       fail("Failed with code", n);
-  //     }
-  //   }
-  // });
-  // test.main();
-  
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
   let ptrs = [];
   for (let i = 0; i < 10; i++) {
     let ptr = mod.alloc(10);

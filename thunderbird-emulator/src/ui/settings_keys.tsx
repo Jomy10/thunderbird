@@ -23,7 +23,6 @@ const KeySettings: Component = () => {
   let key: Key | null = null;
   function register(_key: Key) {
     key = _key;
-    console.log(key);
   }
   
   function keyHandle(event: KeyboardEvent) {

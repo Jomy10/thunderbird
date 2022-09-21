@@ -65,7 +65,6 @@ export default class SoundEngine {
   * @param {string} length: "x{n, t, m}"
   */
   play(instrument: number, note: string, length: string | number) {
-    // console.log("playing", instrument, note, length);
     let instr: Tone.PolySynth<Tone.Synth<Tone.SynthOptions>>;
     switch (instrument) {
       case 0: instr = this.instruments.pulseSynth; break;

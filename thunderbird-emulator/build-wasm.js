@@ -24,9 +24,9 @@ async function compileWasm() {
 function wat2wasm(file, outFile) {
   exec(`wat2wasm ${file} -o ${outFile}`, function(err, stdout, stderr) {
     if (stderr != "") {
-      console.log("Error while converting wat:", stderr);
+      console.error("Error while converting wat:", stderr);
     } else if (err !== null) {
-      console.log("Error while converting wat:", err);
+      console.error("Error while converting wat:", err);
     }
   });
 }
