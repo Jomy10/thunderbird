@@ -93,7 +93,11 @@ impl State {
                     }
                 }
                 if won { self.game_state = GameState::Won };
-            }, GameState::GameOver | GameState::Won => {}
+            }, GameState::GameOver | GameState::Won => {
+                if Keys::A.is_pressed() {
+                    *self = State::new();
+                }
+            }
         }
     }
     pub fn draw(&self) {
@@ -109,8 +113,10 @@ impl State {
                     enemy_row.enemies.iter().for_each(|enemy| { enemy.draw(); })
                 });
             }, GameState::GameOver => {
-
-            }, GameState::Won => {}
+                fill(0b11100000);
+            }, GameState::Won => {
+                fill(0b00011100);
+            }
         }
     }
     fn new_bullet(&mut self) {

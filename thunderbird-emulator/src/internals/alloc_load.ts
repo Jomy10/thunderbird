@@ -13,8 +13,8 @@ export default async function loadAlloc(
   mem: WebAssembly.Memory,
   memStart: number = Math.pow(2,16), memSize: number = 3*(Math.pow(2,16)),
 ): Promise<Allocator> {
-  const availableList = await fetchWasm("/wasm/alloc_available_list.wasm");
-  const alloc: Allocator = await fetchWasm("/wasm/alloc.wasm", {
+  const availableList = await fetchWasm("wasm/alloc_available_list.wasm");
+  const alloc: Allocator = await fetchWasm("wasm/alloc.wasm", {
     env: {
       memory: mem,
       memStart: memStart,

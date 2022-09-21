@@ -56,7 +56,7 @@ export default class Emulator {
     this.keyboardManager = km;
 
     let req = new XMLHttpRequest();
-    req.open('GET', `/wasm/start-screen.wasm`);
+    req.open('GET', `wasm/start-screen.wasm`);
     req.responseType = "arraybuffer";
     req.onload = (_) => {
       const arrayBuffer = req.response;
@@ -79,7 +79,7 @@ export default class Emulator {
     let __memArr = new Uint8Array(game_memory.buffer);
 
     const _console = new Console(__memArr);
-    let queue = await fetchWasm('/wasm/queue.wasm', {
+    let queue = await fetchWasm('wasm/queue.wasm', {
       env: {
         memory: queue_memory,
         logN: _console.logN.bind(_console),
@@ -90,12 +90,12 @@ export default class Emulator {
     let keyboardManager = new KeyboardManager();
     keyboardManager.registerKeyboardEvents(__memArr);
 
-    let display = new Display(canvas, queue, await fetchWasm('/wasm/display.wasm', { queue }) as DisplayFunctions, );
+    let display = new Display(canvas, queue, await fetchWasm('wasm/display.wasm', { queue }) as DisplayFunctions, );
     let soundEngine = new SoundEngine(queue);
     let cartridgeReader = new CartridgeReader();
 
     let processor = new Processor((await fetchWasm(
-      '/wasm/processor.wasm',
+      'wasm/processor.wasm',
       // Import object for processor
       {
         queue: {

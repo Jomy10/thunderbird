@@ -12,7 +12,7 @@ const Rom: Component<{loadRom: () => void, name: string, romImageLink?: string}>
   return (
     <a onclick={props.loadRom}>
       <VStack>
-        <img width="100vw" src={`/rom-covers/${props.romImageLink || "__default.png"}`} style="image-rendering: pixelated;"></img>
+        <img width="100vw" src={`rom-covers/${props.romImageLink || "__default.png"}`} style="image-rendering: pixelated;"></img>
         <p style="overflow-wrap: break-word; hyphens: auto;">{props.name}</p>
       </VStack>
     </a>
@@ -22,7 +22,7 @@ const Rom: Component<{loadRom: () => void, name: string, romImageLink?: string}>
 export const DefaultRom: Component<{file: string, name: string, img?: string}> = (props) => {
   function loadRom() {
     let req = new XMLHttpRequest();
-    req.open('GET', `/wasm/${props.file}`);
+    req.open('GET', `wasm/${props.file}`);
     req.responseType = "arraybuffer";
     req.onload = (_) => {
       const arrayBuffer = req.response;
