@@ -1,6 +1,6 @@
 # Thunderbird console
 
-![console](assets/console.png)
+![console](docs/_media/icon@128.png)
 
 A fantasy console that operates on an instruction queue and executes WebAssembly
 games.
