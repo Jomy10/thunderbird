@@ -13,5 +13,6 @@
   * [Controller](internals/controller)
   * [Instruction queue](internals/queue)
   * [The processor](internals/processor)
+  * [Memory](memory)
   * [Assembly](internals/asm)
   * [A game](internals/game)
