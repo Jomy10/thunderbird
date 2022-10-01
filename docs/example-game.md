@@ -421,11 +421,11 @@ You can look at the full source code of this example on github
 
 ##### **Rust (API)**
 
-[View on GitHub](https://github.com/jomy10/thunderbird/blob/master/docs/examples/rust-api)
+[View on GitHub](https://github.com/jomy10/thunderbird/blob/master/docs/example-game/rust-api)
 
 #### **C (API)**
 
-[View on GitHub](https://github.com/jomy10/thunderbird/blob/master/docs/examples/c-api/main.c)
+[View on GitHub](https://github.com/jomy10/thunderbird/blob/master/docs/example-game/c-api/main.c)
 
 <!-- tabs:end -->
 
