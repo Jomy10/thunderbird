@@ -21,3 +21,7 @@ the Thunderbird fantasy console. The documetation is divided into the following 
 
 - Internals
   - Discusses the internals of the console. Navigate to the different sections in the sidebar.
+  
+## Examples
+
+Example games can be found on [GitHub](https://github.com/Jomy10/thunderbird/tree/master/examples)

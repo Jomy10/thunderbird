@@ -10,3 +10,5 @@ node_modules
 /src/sprite_converter
 
 .beaver
+
+*.zip
