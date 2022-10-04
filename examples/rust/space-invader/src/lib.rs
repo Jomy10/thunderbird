@@ -13,7 +13,7 @@ use quad_rand as rand;
 unsafe extern "C" fn __init() {
     panic::init();
     STATE = Some(State::new());
-    rand::srand(get_timestamp().try_into().unwrap()); // Should never panic
+    rand::srand(get_timestamp().try_into().unwrap_or(0)); // Should never panic
 }
 
 static mut STATE: Option<State> = None;
